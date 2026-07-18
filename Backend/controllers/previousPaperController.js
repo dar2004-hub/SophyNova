@@ -6,7 +6,7 @@ const getPreviousPapers = async (req, res) => {
 
         const examId = req.params.examId;
 
-        const [papers] = await db.promise().query(
+        const [papers] = await db.query(
             `SELECT
                 paper_id,
                 year,

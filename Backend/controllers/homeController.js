@@ -4,23 +4,23 @@ const getHome = async (req, res) => {
 
     try {
 
-        const [featuredExams] = await db.promise().query(
+        const [featuredExams] = await db.query(
             "SELECT exam_id, exam_name, organization, category FROM exams LIMIT 8"
         );
 
-        const [resources] = await db.promise().query(
+        const [resources] = await db.query(
             "SELECT * FROM resources LIMIT 8"
         );
 
-        const [books] = await db.promise().query(
+        const [books] = await db.query(
             "SELECT * FROM books LIMIT 8"
         );
 
-        const [videos] = await db.promise().query(
+        const [videos] = await db.query(
             "SELECT * FROM videos LIMIT 8"
         );
 
-        const [mockTests] = await db.promise().query(
+        const [mockTests] = await db.query(
             "SELECT * FROM mock_tests LIMIT 8"
         );
 

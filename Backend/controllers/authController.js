@@ -27,7 +27,7 @@ const register = async (req, res) => {
 
         // Check Email
 
-        const [existing] = await db.promise().query(
+        const [existing] = await db.query(
 
             "SELECT * FROM users WHERE email=?",
 
@@ -50,7 +50,7 @@ const register = async (req, res) => {
 
         // Insert User
 
-        await db.promise().query(
+        await db.query(
 
             `INSERT INTO users
             (full_name,email,mobile,password)
@@ -100,7 +100,7 @@ const login = async (req, res) => {
 
         const { email, password } = req.body;
 
-        const [users] = await db.promise().query(
+        const [users] = await db.query(
 
             "SELECT * FROM users WHERE email=?",
 

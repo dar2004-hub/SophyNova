@@ -6,7 +6,7 @@ const getMockQuestions = async (req, res) => {
 
         const mockId = req.params.mockId;
 
-        const [questions] = await db.promise().query(
+        const [questions] = await db.query(
             `SELECT
                 question_id,
                 question,

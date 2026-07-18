@@ -6,7 +6,7 @@ const getProfile = async (req, res) => {
 
         const userId = req.user.user_id;
 
-        const [users] = await db.promise().query(
+        const [users] = await db.query(
             `SELECT
                 user_id,
                 full_name,
@@ -57,7 +57,7 @@ const updateProfile = async (req, res) => {
             mobile
         } = req.body;
 
-        await db.promise().query(
+        await db.query(
             `UPDATE users
              SET full_name = ?, mobile = ?
              WHERE user_id = ?`,
@@ -113,7 +113,7 @@ const changePassword = async (req, res) => {
         }
 
         // Get Current Password
-        const [users] = await db.promise().query(
+        const [users] = await db.query(
             "SELECT password FROM users WHERE user_id = ?",
             [userId]
         );
@@ -142,7 +142,7 @@ const changePassword = async (req, res) => {
         const hashedPassword = await bcrypt.hash(newPassword, 10);
 
         // Update Password
-        await db.promise().query(
+        await db.query(
             "UPDATE users SET password = ? WHERE user_id = ?",
             [hashedPassword, userId]
         );

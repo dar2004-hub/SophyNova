@@ -14,7 +14,7 @@ const getDashboard = async (req, res) => {
             });
         }
 
-        const [exam] = await db.promise().query(
+        const [exam] = await db.query(
             "SELECT * FROM exams WHERE exam_id = ?",
             [examId]
         );
@@ -27,57 +27,57 @@ const getDashboard = async (req, res) => {
             });
         }
 
-        const [subjects] = await db.promise().query(
+        const [subjects] = await db.query(
             "SELECT * FROM subjects WHERE exam_id = ?",
             [examId]
         );
 
-        const [resources] = await db.promise().query(
+        const [resources] = await db.query(
             "SELECT * FROM resources WHERE exam_id = ?",
             [examId]
         );
 
-        const [pdfs] = await db.promise().query(
+        const [pdfs] = await db.query(
             "SELECT * FROM pdfs WHERE exam_id = ?",
             [examId]
         );
 
-        const [videos] = await db.promise().query(
+        const [videos] = await db.query(
             "SELECT * FROM videos WHERE exam_id = ?",
             [examId]
         );
 
-        const [books] = await db.promise().query(
+        const [books] = await dbquery(
             "SELECT * FROM books WHERE exam_id = ?",
             [examId]
         );
 
-        const [onlineSources] = await db.promise().query(
+        const [onlineSources] = await db.query(
             "SELECT * FROM online_sources WHERE exam_id = ?",
             [examId]
         );
 
-        const [mockTests] = await db.promise().query(
+        const [mockTests] = await db.query(
             "SELECT * FROM mock_tests WHERE exam_id = ?",
             [examId]
         );
 
-        const [mockQuestions] = await db.promise().query(
+        const [mockQuestions] = await db.query(
             "SELECT * FROM mock_questions WHERE exam_id = ?",
             [examId]
         );
 
-        const [previousPapers] = await db.promise().query(
+        const [previousPapers] = await db.query(
             "SELECT * FROM previous_papers WHERE exam_id = ?",
             [examId]
         );
 
-        const [notifications] = await db.promise().query(
+        const [notifications] = await db.query(
             "SELECT * FROM notifications WHERE exam_id = ?",
             [examId]
         );
 
-        const [reviews] = await db.promise().query(
+        const [reviews] = await db.query(
             "SELECT * FROM reviews WHERE exam_id = ?",
             [examId]
         );

@@ -25,7 +25,7 @@ const getNotifications = async (req, res) => {
 
         sql += " ORDER BY notification_date DESC";
 
-        const [notifications] = await db.promise().query(sql, params);
+        const [notifications] = await db.query(sql, params);
 
         res.json({
             success: true,

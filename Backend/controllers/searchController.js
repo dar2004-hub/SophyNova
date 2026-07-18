@@ -36,17 +36,17 @@ const searchData = async (req, res) => {
 
         const search = `%${query}%`;
 
-        const [exams] = await db.promise().query(
+        const [exams] = await db.query(
             "SELECT * FROM exams WHERE exam_name LIKE ?",
             [search]
         );
 
-        const [subjects] = await db.promise().query(
+        const [subjects] = await db.query(
             "SELECT * FROM subjects WHERE subject_name LIKE ?",
             [search]
         );
 
-        const [resources] = await db.promise().query(
+        const [resources] = await db.query(
 
             `
             SELECT
@@ -77,32 +77,32 @@ const searchData = async (req, res) => {
 
         );
 
-        const [books] = await db.promise().query(
+        const [books] = await db.query(
             "SELECT * FROM books WHERE book_title LIKE ?",
             [search]
         );
 
-        const [pdfs] = await db.promise().query(
+        const [pdfs] = await db.query(
             "SELECT * FROM pdfs WHERE pdf_title LIKE ?",
             [search]
         );
 
-        const [videos] = await db.promise().query(
+        const [videos] = await db.query(
             "SELECT * FROM videos WHERE video_title LIKE ?",
             [search]
         );
 
-        const [previousPapers] = await db.promise().query(
+        const [previousPapers] = await db.query(
             "SELECT * FROM previous_papers WHERE paper_title LIKE ?",
             [search]
         );
 
-        const [mockTests] = await db.promise().query(
+        const [mockTests] = await db.query(
             "SELECT * FROM mock_tests WHERE test_title LIKE ?",
             [search]
         );
 
-        const [onlineSources] = await db.promise().query(
+        const [onlineSources] = await db.query(
             "SELECT * FROM online_sources WHERE source_title LIKE ?",
             [search]
         );
