@@ -8,8 +8,7 @@ const db = mysql.createConnection({
     password: process.env.DB_PASSWORD || "k64VzyYHPAMTnRLi" ,
     database: process.env.DB_NAME || "sophynova",
     port: process.env.DB_PORT || 4000,
-    
-    ssl:{rejectUnauthorized: false}
+    ssl:{rejectUnauthorized: true}
 
 });
 
