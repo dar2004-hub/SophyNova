@@ -19,9 +19,7 @@ const searchResources = async (req, res) => {
 
         const search = `%${keyword}%`;
 
-        const [resources] = await db.promise().query(
-
-            
+        const [resources] = await db.query(
 
             `
             SELECT
@@ -52,9 +50,7 @@ const searchResources = async (req, res) => {
                 r.title
             `,
 
-            
             [exam_id, search]
-            
 
         );
 

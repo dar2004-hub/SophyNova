@@ -57,7 +57,7 @@ const uploadPDF = async (req, res) => {
         // Check Resource Exists
         // -----------------------------
 
-        const [resource] = await db.promise().query(
+        const [resource] = await db.query(
 
             `
             SELECT *
@@ -104,7 +104,7 @@ const uploadPDF = async (req, res) => {
         // Duplicate Check
         // -----------------------------
 
-        const [existing] = await db.promise().query(
+        const [existing] = await db.query(
 
             `
             SELECT pdf_id
@@ -153,7 +153,7 @@ const uploadPDF = async (req, res) => {
 
         const pdf_file = req.file.filename;
 
-        const [result] = await db.promise().query(
+        const [result] = await db.query(
 
             `
             INSERT INTO pdfs
@@ -191,6 +191,7 @@ const uploadPDF = async (req, res) => {
         });
 
     }
+    
 
     catch (err) {
 
@@ -240,7 +241,7 @@ const getPDF = async (req, res) => {
 
         }
 
-        const [pdf] = await db.promise().query(
+        const [pdf] = await db.query(
 
             `
             SELECT *

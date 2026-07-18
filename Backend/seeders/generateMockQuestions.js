@@ -5,7 +5,7 @@ async function generateQuestions() {
     try {
 
         // Get all mock tests
-        const [mockTests] = await db.promise().query(
+        const [mockTests] = await db.query(
             "SELECT mock_id, total_questions FROM mock_tests"
         );
 
@@ -33,7 +33,7 @@ async function generateQuestions() {
                 // Insert every 1000 rows
                 if (batch.length === 1000) {
 
-                    await db.promise().query(
+                    await db.query(
                         `INSERT INTO mock_questions
                         (mock_id, question, option_a, option_b, option_c, option_d, correct_answer, explanation)
                         VALUES ?`,
@@ -50,7 +50,7 @@ async function generateQuestions() {
         // Insert remaining rows
         if (batch.length > 0) {
 
-            await db.promise().query(
+            await db.query(
                 `INSERT INTO mock_questions
                 (mock_id, question, option_a, option_b, option_c, option_d, correct_answer, explanation)
                 VALUES ?`,

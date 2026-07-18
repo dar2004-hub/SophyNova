@@ -1,13 +1,10 @@
 const db = require("../config/db");
-
+console.log("🚀 Subject Controller Loaded");
 const getSubjectsByExam = async (req, res) => {
-
-    try {
-
+    try {console.log("Exam ID:", req.params.exam_id);
         const { exam_id } = req.params;
 
-        const [subjects] = await db.promise().query(
-
+        const [subjects] = await db.query(
             `
             SELECT
                 subject_id,
@@ -16,39 +13,26 @@ const getSubjectsByExam = async (req, res) => {
             WHERE exam_id = ?
             ORDER BY subject_name
             `,
-
             [exam_id]
-
         );
 
         res.json({
-
             success: true,
-
             subjects
-
         });
 
-    }
+    } catch (err) {
+    console.error("===== SUBJECT CONTROLLER ERROR =====");
+    console.error(err);
+    console.error(err.stack)
 
-    catch (err) {
-
-        console.log(err);
-
-        res.status(500).json({
-
-            success: false,
-
-            message: err.message
-
-        });
-
-    }
-
+    return res.status(500).json({
+        success: false,
+        message: err.message
+    });
+}
 };
 
 module.exports = {
-
     getSubjectsByExam
-
 };

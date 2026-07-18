@@ -8,6 +8,24 @@ const app = express();
 // ================= DATABASE =================
 require("./config/db");
 
+
+const db = require("./config/db");
+
+(async () => {
+  try {
+    const [rows] = await db.query(`
+      SELECT
+        DATABASE() AS current_db,
+        @@hostname AS host,
+        @@port AS port
+    `);
+
+    console.log(rows);
+  } catch (err) {
+    console.error(err);
+  }
+})();
+
 // ================= MIDDLEWARE =================
 app.use(cors());
 app.use(express.json());
