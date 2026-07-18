@@ -46,8 +46,16 @@ function Navbar() {
         </li>
 
       </ul>
+       
+      <ul>
+      
+        <li>
+          <Link to="/About" className="hover:text-cyan-400 transition">
+            About
+          </Link>
+        </li>
 
-
+      </ul>
 
 
       {/* Buttons */}
