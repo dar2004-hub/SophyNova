@@ -2,7 +2,7 @@ const express = require("express");
 
 const router = express.Router();
 
-const multer = require("../middleware/upload");
+const multer = require("../Middleware/upload");
 
 const {
 
