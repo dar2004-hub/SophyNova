@@ -50,8 +50,11 @@ function Navbar() {
       <ul>
       
         <li>
+          
           <Link to="/UploadPDF" className="hover:text-cyan-400 transition">
+
             Upload
+
           </Link>
         </li>
 
