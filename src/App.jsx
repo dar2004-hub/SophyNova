@@ -1,8 +1,9 @@
-import Navbar from "./components/Navbar";
-import Home from "./Pages/Home";
-import Exam from "./Pages/Exam";
-import Resources from "./Pages/Resources";
-import About from "./Pages/About";
+
+import Home from "./Navigation_Pages/Home";
+import Exam from "./Navigation_Pages/Exam"
+import Resources from "./Navigation_Pages/Resources"
+import Navbar from "./components/Navbar"
+import About from "./Navigation_Pages/About"
 import Login from "./Pages/Login";
 import Register from "./Pages/Register";
 import UPSC from "./Navigation_Pages/UPSC";
