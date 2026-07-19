@@ -49,9 +49,11 @@ const handleSearch = async () => {
     try {
 
         setLoading(true);
-
+        
+        
+        const API_URL= import.meta.env.VIT_API_URL;
         const res = await axios.get(
-            "http://localhost:5000/api/resources/search",
+            `${API_URL}/api/resources/search`,
             {
                 params: {
                     exam_id: exam.value,

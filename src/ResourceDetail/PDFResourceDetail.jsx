@@ -29,7 +29,7 @@ function PDFResourceDetails() {
 
                 const res = await axios.get(
 
-                    "http://localhost:5000/api/pdfs/get",
+                    "https://sophynova-backend.onrender.com",
 
                     {
                         params: {
@@ -165,7 +165,7 @@ function PDFResourceDetails() {
     // PDF URL
     // ----------------------------
 
-    const pdfURL = `http://localhost:5000/uploads/pdfs/${pdf.pdf_file}`;
+    const pdfURL = `https://sophynova-backend.onrender.com${pdf.pdf_file}`;
 
     return (
 

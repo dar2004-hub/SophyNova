@@ -103,9 +103,11 @@ function UploadPDF() {
 
         }
 
+        const API_URL= import.meta.env.VIT_API_URL;
+
         axios
 
-        .get(`http://localhost:5000/api/subjects/${exam.value}`)
+        .get(`${API_URL}/api/subjects/${exam.value}`)
 
         .then((res)=>{
 
@@ -191,9 +193,12 @@ function UploadPDF() {
 
             setLoading(true);
 
+            
+            const API_URL= import.meta.env.VIT_API_URL;
+
             const res=await axios.post(
 
-                "http://localhost:5000/api/pdfs/upload",
+                `${API_URL}/api/pdfs/upload`,
 
                 formData,
 
