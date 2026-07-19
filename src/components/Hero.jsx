@@ -17,10 +17,11 @@ const [loading, setLoading] = useState(false);
     try {
 
         setLoading(true);
+        const API = import.meta.env.VITE_API_URL;
 
-        const res = await axios.get(
-            `http://localhost:5000/api/search?query=${search}`
-        );
+        console.log("API URL:", import.meta.env.VITE_API_URL);
+
+        axios.get(`${API}/api/subjects/${exam.value}`);
 
         if (!res.data.success) {
             setResults([]);

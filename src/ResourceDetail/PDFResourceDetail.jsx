@@ -27,9 +27,11 @@ function PDFResourceDetails() {
 
             try {
 
+                const API = import.meta.env.VITE_API_URL;
+
                 const res = await axios.get(
 
-                    "http://localhost:5000/api/pdfs/get",
+                    `${API}/api/resources/search`,
 
                     {
                         params: {
