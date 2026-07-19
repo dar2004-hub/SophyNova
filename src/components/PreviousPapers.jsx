@@ -13,7 +13,11 @@ function PreviousPapers() {
         Download previous year question papers for various Government Exams.
       </p>
 
-      {/* Search Box */}
+
+
+      {/*------------------------------------------------------ Search Box --------------------------------------------------------- */}
+
+
       <div className="max-w-2xl mx-auto mb-12">
         <input
           type="text"
@@ -22,7 +26,12 @@ function PreviousPapers() {
         />
       </div>
 
-      {/* Paper Cards */}
+
+
+      {/*------------------------------------------------------- Paper Cards------------------------------------------------------------------------------- */}
+
+
+
       <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-6">
 
         {papers.map((paper, index) => (

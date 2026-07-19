@@ -198,14 +198,14 @@ const [loading, setLoading] = useState(false);
 
 </div>
 
-        <button className="mt-4 sm:mt-5 bg-cyan-500 px-6 py-3 rounded-xl hover:bg-cyan-600 transition w-full sm:w-auto">
+        <button onClick={handleSearch}  className="mt-4 sm:mt-5 bg-cyan-500 px-6 py-3 rounded-xl hover:bg-cyan-600 transition w-full sm:w-auto">
             Search
         </button>
         </div>
 
         <div  className="mt-10 flex flex-col sm:flex-row justify-center gap-4 sm:gap-6">
 
-          <button onClick={handleSearch} className="bg-cyan-500 px-8 py-3 rounded-xl hover:bg-cyan-600 transition w-full sm:w-auto">
+          <button className="bg-cyan-500 px-8 py-3 rounded-xl hover:bg-cyan-600 transition w-full sm:w-auto">
             Start Learning
           </button>
 

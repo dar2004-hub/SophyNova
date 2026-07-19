@@ -17,7 +17,9 @@ const getAllExams = (req, res) => {
 
 };
 
-// Search Exam
+//------------------------------------------------------------Search Exam---------------------------------------------------------------------
+
+
 const searchExam = (req, res) => {
 
     const name = req.query.name || "";
@@ -37,7 +39,9 @@ const searchExam = (req, res) => {
 
 };
 
-// Get Exam By ID
+// ---------------------------------------------------------Get Exam By ID------------------------------------------------------------
+
+
 const getExamById = (req, res) => {
 
     const sql =
