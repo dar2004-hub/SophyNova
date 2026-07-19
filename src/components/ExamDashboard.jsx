@@ -183,15 +183,8 @@ function ExamDashboard({ title, exams = [] }) {
       
           <button
               onClick={() => navigate(-1)}
-              className="group flex items-center gap-3 px-6 py-3 rounded-full
-                         bg-black/70 backdrop-blur-lg
-                         border border-red-500
-                         text-white
-                         hover:bg-red-600
-                         hover:border-red-400
-                         transition-all duration-300
-                         shadow-lg shadow-red-900/30"
-          >
+              className="group flex items-center gap-3 px-6 py-3 rounded-full bg-black/70 backdrop-blur-lg border border-red-500
+                         text-white hover:bg-red-600 hover:border-red-400 transition-all duration-300 shadow-lg shadow-red-900/30">
       
               <FaArrowLeft className="group-hover:-translate-x-1 transition-transform duration-300" />
       

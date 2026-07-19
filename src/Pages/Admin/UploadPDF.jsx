@@ -263,129 +263,75 @@ function UploadPDF() {
 
     return(
 
-<div className="min-h-screen bg-gradient-to-br from-black via-gray-950 to-red-950 flex justify-center items-center p-10">
+<div className="min-h-screen bg-gradient-to-br from-black via-gray-950 to-red-950 flex justify-center items-center px-4 py-8 sm:px-6 lg:px-10">
 
-<div className="w-full max-w-3xl bg-[#151515] rounded-3xl border border-red-700 shadow-[0_0_40px_rgba(255,0,0,.35)] p-10">
+    <div className="w-full max-w-3xl bg-[#151515] rounded-2xl sm:rounded-3xl border border-red-700 shadow-[0_0_40px_rgba(255,0,0,.35)] p-5 sm:p-8 lg:p-10">
 
-<h1 className="text-5xl font-extrabold text-center text-white">
+        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-center text-white leading-tight">
+            Upload
+        <span className="text-red-600">
+            PDF Resource
+        </span>
 
-Upload
+        </h1>
 
-<span className="text-red-600">
+        <p className="text-center text-sm sm:text-base text-gray-400 mt-3 sm:mt-4">
+        Upload study material for SophyNova
+        </p>
 
- PDF Resource
+            <div className="space-y-5 sm:space-y-6 mt-8 sm:mt-10">
 
-</span>
+        <Select
 
-</h1>
+            options={exams}
+            value={exam}
+            onChange={setExam}
+            placeholder="Select Exam" styles={customStyle}/>
 
-<p className="text-center text-gray-400 mt-4">
+        <Select
 
-Upload study material for SophyNova
+            options={subjects}
+            value={subject}
+            onChange={setSubject}
+            placeholder="Select Subject"
+            styles={customStyle}/>
 
-</p>
+        <Select
 
-<div className="space-y-6 mt-10">
+            options={resourceTypes}
+            value={resourceType}
+            onChange={setResourceType}
+            placeholder="Select Resource Type"
+            styles={customStyle}/>
 
-<Select
+        <input
 
-options={exams}
+            type="text" placeholder="Enter PDF Title" value={title} onChange={(e)=>setTitle(e.target.value)}
+            className="w-full p-3 sm:p-4 rounded-xl bg-[#181818] border border-red-600 text-white text-sm sm:text-base outline-none focus:border-red-400"/>
 
-value={exam}
+        <input
 
-onChange={setExam}
+            id="pdfFile"
+            type="file"
+            accept=".pdf"
+            onChange={(e)=>setPdf(e.target.files[0])}
+            className="w-full p-3 rounded-xl bg-[#181818] border border-red-600 text-white text-sm sm:text-base file:bg-red-600 file:border-0 file:text-white file:px-3 sm:file:px-4 file:py-2 file:rounded-lg"/>
 
-placeholder="Select Exam"
+        <button
 
-styles={customStyle}
+            onClick={handleUpload}
+            disabled={loading}
+            className="w-full bg-red-600 hover:bg-red-700 disabled:bg-gray-600 py-3 sm:py-4 rounded-xl text-lg sm:text-xl lg:text-2xl font-bold transition">
+        {
+             loading ? "Uploading..." : "UPLOAD PDF"
 
-/>
+        }
 
-<Select
+         </button>
 
-options={subjects}
+        </div>
 
-value={subject}
-
-onChange={setSubject}
-
-placeholder="Select Subject"
-
-styles={customStyle}
-
-/>
-
-<Select
-
-options={resourceTypes}
-
-value={resourceType}
-
-onChange={setResourceType}
-
-placeholder="Select Resource Type"
-
-styles={customStyle}
-
-/>
-
-<input
-
-type="text"
-
-placeholder="Enter PDF Title"
-
-value={title}
-
-onChange={(e)=>setTitle(e.target.value)}
-
-className="w-full p-4 rounded-xl bg-[#181818] border border-red-600 text-white outline-none focus:border-red-400"
-
-/>
-
-<input
-
-id="pdfFile"
-
-type="file"
-
-accept=".pdf"
-
-onChange={(e)=>setPdf(e.target.files[0])}
-
-className="w-full p-3 rounded-xl bg-[#181818] border border-red-600 text-white file:bg-red-600 file:border-0 file:text-white file:px-4 file:py-2 file:rounded-lg"
-
-/>
-
-<button
-
-onClick={handleUpload}
-
-disabled={loading}
-
-className="w-full bg-red-600 hover:bg-red-700 disabled:bg-gray-600 py-4 rounded-xl text-2xl font-bold transition"
-
->
-
-{
-
-loading
-
-?
-
-"Uploading..."
-
-:
-
-"UPLOAD PDF"
-
-}
-
-</button>
-
-</div>
-
-</div>
+    </div>
 
 </div>
 

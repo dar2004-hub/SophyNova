@@ -90,154 +90,102 @@ const handleSearch = async () => {
 
 <div className="min-h-screen bg-gradient-to-br from-black via-gray-950 to-red-950">
 
-<div className="max-w-6xl mx-auto py-24 px-6">
+    <div className="max-w-6xl mx-auto py-24 px-6">
 
-<div className="text-center">
+        <div className="text-center">
 
-<h1 className="text-6xl font-extrabold text-white">
+            <h1 className="text-6xl font-extrabold text-white">
 
-Find Your
+              Find Your
 
-<span className="text-red-600">
 
- Study Resources
+                 <span className="text-red-600">
 
-</span>
+                  Study Resources
 
-</h1>
+                 </span>
 
-<p className="mt-5 text-xl text-gray-300">
+            </h1>
 
-Search Notes • Books • PYQs • Videos • Mock Tests • PDFs
+            <p className="mt-5 text-xl text-gray-300">
 
-</p>
+                Search Notes • Books • PYQs • Videos • Mock Tests • PDFs
 
-</div>
+            </p>
 
-<div className="bg-[#111] mt-16 rounded-3xl shadow-[0_0_40px_rgba(255,0,0,.4)] border border-red-700 p-12">
+        </div>
 
-<div className="grid lg:grid-cols-2 gap-10">
+        <div className="bg-[#111] mt-16 rounded-3xl shadow-[0_0_40px_rgba(255,0,0,.4)] border border-red-700 p-12">
 
-<div>
+            <div className="grid lg:grid-cols-2 gap-10">
 
-<h2 className="text-white text-3xl font-bold mb-5">
+                <div>
 
-🎯 Select Exam
+                    <h2 className="text-white text-3xl font-bold mb-5">
 
-</h2>
+                     🎯 Select Exam
 
-<Select
+                    </h2>
 
-options={exams}
+                    <Select
 
-placeholder="Search Exam..."
+                    options={exams}
 
-value={exam}
+                    placeholder="Search Exam..."
+ 
+                    value={exam}
 
-onChange={setExam}
+                    onChange={setExam}
 
 styles={{
 
-control:(base)=>({
+control:(base)=>({...base,background:"#181818",border:"2px solid red",padding:"10px",borderRadius:"15px",color:"white"}),
 
-...base,
+menu:(base)=>({...base,background:"#222"}),
 
-background:"#181818",
+option:(base,state)=>({...base,background:state.isFocused?"red":"#222",color:"white"}),
 
-border:"2px solid red",
-
-padding:"10px",
-
-borderRadius:"15px",
-
-color:"white"
-
-}),
-
-menu:(base)=>({
-
-...base,
-
-background:"#222"
-
-}),
-
-option:(base,state)=>({
-
-...base,
-
-background:state.isFocused?"red":"#222",
-
-color:"white"
-
-}),
-
-singleValue:(base)=>({
-
-...base,
-
-color:"white"
-
-})
+singleValue:(base)=>({...base,color:"white"})
 
 }}
 
 />
 
-</div>
+                </div>
 
-<div>
+                <div>
 
-<h2 className="text-white text-2xl font-bold mb-3">
+                    <h2 className="text-white text-2xl font-bold mb-3">
 
-📚 Subject / Topic
+                        📚 Subject / Topic
 
-</h2>
+                    </h2>
 
-<input
+                    <input type="text" placeholder="Operating System" value={keyword} onChange={(e)=>setKeyword(e.target.value)}
+                         className="w-full p-5 rounded-2xl bg-[#181818] border-2 border-red-600 text-white text-xl
+                         placeholder:text-gray-500 outline-none focus:border-red-400 transition"/>
 
-type="text"
+                </div>
 
-placeholder="Operating System"
+            </div>
 
-value={keyword}
+            <div className="flex justify-center mt-14">
 
-onChange={(e)=>setKeyword(e.target.value)}
+                <button onClick={handleSearch} className="flex items-center gap-4 bg-red-600 hover:bg-red-700 px-14 py-5
+                rounded-full text-2xl font-extrabold shadow-[0_0_30px_rgba(255,0,0,.6)] transition duration-300 hover:scale-105">
 
-className="w-full p-5 rounded-2xl bg-[#181818] border-2 border-red-600 text-white text-xl placeholder:text-gray-500 outline-none focus:border-red-400 transition"
+                <Search size={30}/> SEARCH NOW
 
-/>
+               </button>
 
-</div>
+            </div>
 
-</div>
+            <div className="mt-12">
+                {loading ? (
 
-<div className="flex justify-center mt-14">
-
-<button
-
-onClick={handleSearch}
-
-className="flex items-center gap-4 bg-red-600 hover:bg-red-700 px-14 py-5 rounded-full text-2xl font-extrabold shadow-[0_0_30px_rgba(255,0,0,.6)] transition duration-300 hover:scale-105"
-
->
-
-<Search size={30}/>
-
-SEARCH NOW
-
-</button>
-
-</div>
-<div className="mt-12">
-
-    {loading ? (
-
-        <h2 className="text-center text-white text-2xl">
-
-            Searching...
-
-        </h2>
+                    <h2 className="text-center text-white text-2xl">
+                        Searching...
+                    </h2>
 
     ) : results.length > 0 ? (
 
@@ -327,10 +275,11 @@ SEARCH NOW
 
     )}
 
-</div>
-</div>
+            </div>
+        
+        </div>
 
-</div>
+    </div>
 
 </div>
 

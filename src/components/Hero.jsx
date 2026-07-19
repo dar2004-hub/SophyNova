@@ -119,42 +119,40 @@ const [loading, setLoading] = useState(false);
 };
 
   return (
-    <section className="bg-gray-950 text-white min-h-[90vh] flex items-center justify-center">
+    
+    <section className="bg-gray-950 text-white min-h-[90vh] flex items-center justify-center px-4">
 
-      <div className="text-center max-w-4xl px-6">
+      <div className="text-center w-full max-w-5xl px-4 sm:px-6">
 
-        <h1 className="text-6xl font-extrabold leading-tight">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight">
           AI Powered Government
           <span className="text-cyan-400"> Exam Preparation</span>
         </h1>
 
-        <p className="mt-6 text-xl text-gray-300">
+        <p className="mt-6 text-base sm:text-lg md:text-xl text-gray-300 px-2">
           One Platform for UPSC, SSC, Banking, Railway,
           Defence, State PSC and CS/IT Aspirants.
         </p>
 
         <div className="mt-8">
           <input
-             type="text"
-             value={search}
-             onChange={(e)=> setSearch(e.target.value)}
+             type="text" value={search} onChange={(e)=> setSearch(e.target.value)}
              onKeyDown={(e)=>{
               if(e.key==="Enter"){
                 handleSearch();
               }
              }}
              placeholder="🔍 Search Previous Year Papers, Notes, Mock Tests..."
-             className=" w-[700px] h-14 px-6 rounded-full bg-gray-300 text-red-500 text-lg placeholder:text-lg
-             placeholder:font-semibold placeholder:text-gray-500 shadow-lg focus:outline-none focus:ring-4
-             focus:ring-red-800 transition duration-200" />
+             className="w-full max-w-[700px] h-12 sm:h-14 px-5 sm:px-6 rounded-full bg-gray-300 text-red-500
+             text-base sm:text-lg placeholder:text-sm sm:placeholder:text-lg placeholder:font-semibold placeholder:text-gray-500 shadow-lg focus:outline-none focus:ring-4 focus:ring-red-800 transition duration-200" />
 
-             <div className="mt-6 w-[800px] mx-auto">
+             <div className="mt-6 w-full max-w-[800px] mx-auto">
 
-    {loading && (
-        <p className="text-cyan-400 text-lg">
-            Searching...
-        </p>
-    )}
+                {loading && (
+               <p className="text-cyan-400 text-lg">
+                   Searching...
+               </p>
+             )}
 
     {!loading && results.length === 0 && search !== "" && (
         <div className="bg-gray-900 rounded-xl p-6 text-center">
@@ -200,18 +198,18 @@ const [loading, setLoading] = useState(false);
 
 </div>
 
-        <button className="bg-cyan-500 px-6 py-4 rounded-r-lg hover:bg-cyan-600 transition">
+        <button className="mt-4 sm:mt-5 bg-cyan-500 px-6 py-3 rounded-xl hover:bg-cyan-600 transition w-full sm:w-auto">
             Search
         </button>
         </div>
 
-        <div className="mt-10 flex justify-center gap-6">
+        <div  className="mt-10 flex flex-col sm:flex-row justify-center gap-4 sm:gap-6">
 
-          <button onClick={handleSearch} className="bg-cyan-500 px-8 py-3 rounded-xl hover:bg-cyan-600 transition">
+          <button onClick={handleSearch} className="bg-cyan-500 px-8 py-3 rounded-xl hover:bg-cyan-600 transition w-full sm:w-auto">
             Start Learning
           </button>
 
-          <button className="border border-white px-8 py-3 rounded-xl hover:bg-white hover:text-black transition">
+          <button className= "border-white px-8 py-3 rounded-xl hover:bg-white hover:text-black transition w-full sm:w-auto">
             Explore Exams
           </button>
 
