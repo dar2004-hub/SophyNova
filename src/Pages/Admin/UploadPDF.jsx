@@ -103,7 +103,7 @@ function UploadPDF() {
 
         }
 
-        const VITE_API_URL= import.meta.env.VITE_API_URL;
+        const API_URL= import.meta.env.VITE_API_URL;
 
         axios
 
@@ -194,7 +194,7 @@ function UploadPDF() {
             setLoading(true);
 
             
-            const API_URL= import.meta.env.VIT_API_URL;
+            const API_URL= import.meta.env.VITE_API_URL;
 
             const res=await axios.post(
 
