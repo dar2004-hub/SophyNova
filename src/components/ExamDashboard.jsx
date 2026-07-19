@@ -21,17 +21,17 @@ function ExamDashboard({ title, exams = [] }) {
   });
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-950 via-slate-900 to-black text-white p-10">
+    <div className="min-h-screen bg-gradient-to-br from-gray-950 via-slate-900 to-black text-white px-4 py-6 sm:px-6 lg:px-10">
 
       {/* Heading */}
-      <h1 className="text-5xl font-extrabold text-center text-cyan-400 mb-12">
+      <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-center text-cyan-400 mb-8 sm:mb-12">
         {title} Examination Portal
       </h1>
 
       {/* Search Box */}
-      <div className="max-w-5xl mx-auto bg-gray-900 rounded-3xl shadow-2xl p-8 mb-12">
+      <div className="max-w-5xl mx-auto bg-gray-900 rounded-2xl sm:rounded-3xl shadow-2xl p-5 sm:p-8 mb-8 sm:mb-12">
 
-        <div className="grid md:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5">
 
           {/* Exam Name */}
           <div className="relative">
@@ -43,7 +43,7 @@ function ExamDashboard({ title, exams = [] }) {
               placeholder="Search Exam Name..."
               value={examName}
               onChange={(e) => setExamName(e.target.value)}
-              className="w-full pl-12 pr-4 py-4 rounded-xl bg-gray-800 outline-none border border-gray-700 focus:border-cyan-400"
+              className="w-full pl-12 pr-4 py-3 sm:py-4 rounded-xl bg-gray-800 text-sm sm:text-base outline-none border border-gray-700 focus:border-cyan-400"
             />
 
           </div>
@@ -60,13 +60,13 @@ function ExamDashboard({ title, exams = [] }) {
               type="date"
               value={examDate}
               onChange={(e) => setExamDate(e.target.value)}
-              className="w-full pl-12 pr-4 py-4 rounded-xl bg-gray-800 outline-none border border-gray-700 focus:border-cyan-400"
+              className="w-full pl-12 pr-4 py-3 sm:py-4 rounded-xl bg-gray-800 text-sm sm:text-base outline-none border border-gray-700 focus:border-cyan-400"
             />
 
           </div>
 
           {/* Button */}
-          <button className="bg-cyan-500 rounded-xl text-lg font-semibold hover:bg-cyan-600 transition">
+          <button className="bg-cyan-500 rounded-xl py-3 text-base sm:text-lg font-semibold hover:bg-cyan-600 transition w-full">
             Search
           </button>
 
@@ -76,7 +76,7 @@ function ExamDashboard({ title, exams = [] }) {
 
       {/* Cards */}
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5 sm:gap-8">
 
         {filteredExams.length > 0 ? (
 
@@ -84,10 +84,10 @@ function ExamDashboard({ title, exams = [] }) {
       
           <div
             key={exam.id}
-            className="bg-gray-900 rounded-3xl p-7 border border-gray-700 hover:border-cyan-400 hover:shadow-cyan-500/20 hover:shadow-2xl hover:-translate-y-2 transition duration-300"
+            className="bg-gray-900 rounded-2xl sm:rounded-3xl p-5 sm:p-7 border border-gray-700 hover:border-cyan-400 hover:shadow-cyan-500/20 hover:shadow-2xl hover:-translate-y-2 transition duration-300"
           >
       
-            <h2 className="text-2xl font-bold text-cyan-400">
+            <h2 className="text-xl sm:text-2xl font-bold text-cyan-400">
               {exam.examName}
             </h2>
       
@@ -112,11 +112,11 @@ function ExamDashboard({ title, exams = [] }) {
       
             <div className="mt-8 border-t border-gray-700 pt-6">
       
-              <div className="grid md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
       
-                <div className="bg-gray-800 rounded-xl p-5">
+                <div className="bg-gray-800 rounded-xl p-4 sm:p-5">
       
-                  <h3 className="text-xl font-bold text-cyan-400">
+                  <h3 className="text-lg sm:text-xl font-bold text-cyan-400">
                     📚 Learning Hub
                   </h3>
       
@@ -128,7 +128,7 @@ function ExamDashboard({ title, exams = [] }) {
                     <li>📋 Syllabus</li>
                   </ul>
       
-                  <button className="mt-5 w-full bg-cyan-500 py-2 rounded-lg hover:bg-cyan-600">
+                  <button className="mt-5 w-full bg-cyan-500 py-2 sm:py-3 rounded-lg hover:bg-cyan-600 transition">
                     Start Learning
                   </button>
       
@@ -149,7 +149,7 @@ function ExamDashboard({ title, exams = [] }) {
                     <li>🔴 Hard</li>
                   </ul>
       
-                  <button className="mt-5 w-full bg-green-500 py-2 rounded-lg hover:bg-green-600">
+                  <button className="mt-5 w-full bg-green-500 py-2 sm:py-3 rounded-lg hover:bg-green-600 transition">
                     Start Practice
                   </button>
       
@@ -179,7 +179,7 @@ function ExamDashboard({ title, exams = [] }) {
 
 )}
 
-<div className="absolute top-40 left-300 z-50">
+<div className="fixed top-4 left-4 sm:top-6 sm:left-6 z-50">
       
           <button
               onClick={() => navigate(-1)}

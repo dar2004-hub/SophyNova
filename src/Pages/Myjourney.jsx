@@ -10,9 +10,9 @@ function Myjourney() {
 
 
 
-<section className="relative py-28 px-6 bg-gradient-to-b from-black via-gray-950 to-black">
+<section className="relative py-14 sm:py-20 lg:py-28 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black via-gray-950 to-black overflow-x-hidden">
 
-    <div className="max-w-6xl mx-auto">
+    <div className="max-w-6xl mx-auto w-full">
 
         {/* Section Heading */}
 
@@ -24,15 +24,15 @@ function Myjourney() {
             className="text-center"
         >
 
-            <h2 className="text-5xl lg:text-6xl font-black text-white">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white">
 
                 My <span className="text-red-500">Journey</span>
 
             </h2>
 
-            <div className="w-40 h-1 bg-red-600 rounded-full mx-auto mt-6"></div>
+            <div className="w-24 sm:w-32 lg:w-40 h-1 bg-red-600 rounded-full mx-auto mt-4 sm:mt-6"></div>
 
-            <p className="text-gray-400 mt-8 text-xl">
+            <p className="text-gray-400 mt-5 sm:mt-8 text-base sm:text-lg lg:text-xl">
 
                 Every dream begins with a single step.
 
@@ -53,18 +53,18 @@ function Myjourney() {
 
             viewport={{ once: true }}
 
-            className="mt-20 bg-white/5 backdrop-blur-xl rounded-3xl border border-red-500/20 shadow-2xl p-10 lg:p-16"
+           className="mt-10 sm:mt-16 lg:mt-20 bg-white/5 backdrop-blur-xl rounded-2xl sm:rounded-3xl border border-red-500/20 shadow-2xl p-5 sm:p-8 lg:p-16"
 
         >
 
-            <h3 className="text-4xl font-bold text-red-500 mb-10">
+            <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-red-500 mb-6 sm:mb-10">
 
                 How Everything Started...
 
             </h3>
 
 
-            <p className="text-gray-300 leading-10 text-lg">
+            <p className="text-gray-300 leading-7 sm:leading-8 lg:leading-10 text-base sm:text-lg">
 
                 Like thousands of students, I also started preparing for
                 competitive examinations with dreams of building a better
@@ -74,7 +74,7 @@ function Myjourney() {
             </p>
 
 
-            <p className="text-gray-300 leading-10 text-lg mt-8">
+            <p className="text-gray-300 leading-7 sm:leading-8 lg:leading-10 text-base sm:text-lg">
 
                 Study materials were scattered across different websites,
                 YouTube channels, Telegram groups and applications.
@@ -84,7 +84,7 @@ function Myjourney() {
             </p>
 
 
-            <p className="text-gray-300 leading-10 text-lg mt-8">
+            <p className="text-gray-300 leading-7 sm:leading-8 lg:leading-10 text-base sm:text-lg">
 
                 I also noticed that many useful resources were hidden behind
                 expensive subscriptions or coaching platforms. Not every
@@ -94,7 +94,7 @@ function Myjourney() {
             </p>
 
 
-            <p className="text-gray-300 leading-10 text-lg mt-8">
+            <p className="text-gray-300 leading-7 sm:leading-8 lg:leading-10 text-base sm:text-lg">
 
                 Instead of accepting this as a normal problem, I decided to
                 create a single platform where students could prepare
@@ -103,21 +103,21 @@ function Myjourney() {
             </p>
 
 
-            <div className="mt-12 border-l-4 border-red-600 pl-8">
+            <div className="mt-8 sm:mt-12 border-l-4 border-red-600 pl-4 sm:pl-8">
 
-                <h4 className="text-3xl font-bold text-white">
+                <h4 className="text-2xl sm:text-3xl font-bold text-white">
 
                     That idea became...
 
                 </h4>
 
-                <h1 className="text-6xl font-black text-red-500 mt-4">
+                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-red-500 mt-3 sm:mt-4">
 
                     SophyNova
 
                 </h1>
 
-                <p className="text-gray-300 mt-6 text-lg leading-9">
+                <p className="text-gray-300 mt-5 sm:mt-6 text-base sm:text-lg leading-7 sm:leading-9">
 
                     A learning platform created with one vision —
 
@@ -137,7 +137,7 @@ function Myjourney() {
     </div>
 
     
-    <div className="absolute top-312 left-160 z-50">
+    <div className="fixed top-4 left-4 sm:top-6 sm:left-6 z-50">
     
         <button
             onClick={() => navigate(-1)}
