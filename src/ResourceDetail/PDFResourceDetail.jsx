@@ -31,7 +31,7 @@ function PDFResourceDetails() {
 
                 const res = await axios.get(
 
-                    `${API}/api/resources/search`,
+                    `${API}/api/pdfs/get`,
 
                     {
                         params: {
@@ -166,8 +166,8 @@ function PDFResourceDetails() {
     // ----------------------------
     // PDF URL
     // ----------------------------
-
-    const pdfURL = `http://localhost:5000/uploads/pdfs/${pdf.pdf_file}`;
+    const API = import.meta.env.VITE_API_URL;
+    const pdfURL = `${API}/uploads/pdfs/${pdf.pdf_file}`;
 
     return (
 
