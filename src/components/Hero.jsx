@@ -20,8 +20,14 @@ const [loading, setLoading] = useState(false);
         const API = import.meta.env.VITE_API_URL;
 
         console.log("API URL:", import.meta.env.VITE_API_URL);
-
-        axios.get(`${API}/api/subjects/${exam.value}`);
+        
+          const res = await axios.get(
+            `${API}/api/search/search`,
+            {
+                params: {
+                    keyword: search}
+                }
+            );
 
         if (!res.data.success) {
             setResults([]);
