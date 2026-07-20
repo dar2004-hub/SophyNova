@@ -10,7 +10,7 @@ function Myjourney() {
 
 
 
-<section className="relative py-14 sm:py-20 lg:py-28 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black via-gray-950 to-black overflow-x-hidden">
+<section className="relative min-h-screen py-14 sm:py-20 lg:py-28 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black via-gray-950 to-black overflow-x-hidden">
 
     <div className="max-w-6xl mx-auto w-full">
 
