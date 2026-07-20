@@ -16,13 +16,13 @@ const uploadPDF = async (req, res) => {
             exam_id,
             subject_id,
             resource_type_id,
-            pdf_title
+            pdf_title,
+            uploaded_by
 
         } = req.body;
 
-        // -----------------------------
-        // Validation
-        // -----------------------------
+    {/*--------------------------------------------------------------- Validation -----------------------------------------------------*/}
+
 
         if (!req.file) {
 
@@ -53,30 +53,15 @@ const uploadPDF = async (req, res) => {
 
         }
 
-        // -----------------------------
-        // Check Resource Exists
-        // -----------------------------
+        {/*--------------------------------------------------Check Resource Exists-----------------------------------------------------------------*/}
 
         const [resource] = await db.query(
 
             `
             SELECT *
-
             FROM resources
-
             WHERE
-
-            exam_id = ?
-
-            AND
-
-            subject_id = ?
-
-            AND
-
-            resource_type_id = ?
-
-            LIMIT 1
+            exam_id = ? AND subject_id = ? AND resource_type_id = ? LIMIT 1
             `,
 
             [
@@ -100,30 +85,15 @@ const uploadPDF = async (req, res) => {
 
         }
 
-        // -----------------------------
-        // Duplicate Check
-        // -----------------------------
+       {/*-------------------------------------------------------Duplicate Check---------------------------------------------------------------------- */}
+
+
 
         const [existing] = await db.query(
 
             `
-            SELECT pdf_id
-
-            FROM pdfs
-
-            WHERE
-
-            exam_id = ?
-
-            AND
-
-            subject_id = ?
-
-            AND
-
-            resource_type_id = ?
-
-            LIMIT 1
+            SELECT pdf_id FROM pdfs
+            WHERE exam_id = ? AND subject_id = ? AND resource_type_id = ? LIMIT 1
             `,
 
             [
@@ -147,12 +117,11 @@ const uploadPDF = async (req, res) => {
 
         }
 
-        // -----------------------------
-        // Insert PDF
-        // -----------------------------
+    {/*--------------------------------------------------------------Insert PDF -----------------------------------------------------------------------*/}
+
+
 
         const pdf_file = req.file.filename;
-
         const [result] = await db.query(
 
             `
@@ -164,10 +133,11 @@ const uploadPDF = async (req, res) => {
                 resource_type_id,
                 pdf_title,
                 pdf_file
+                uploaded_by
 
             )
 
-            VALUES (?,?,?,?,?)
+            VALUES (?,?,?,?,?,?)
             `,
 
             [
@@ -176,7 +146,8 @@ const uploadPDF = async (req, res) => {
                 Number(subject_id),
                 Number(resource_type_id),
                 pdf_title.trim(),
-                pdf_file
+                pdf_file,
+                uploaded_by
 
             ]
 
@@ -208,9 +179,8 @@ const uploadPDF = async (req, res) => {
 
 };
 
-// ==========================================================
-// GET PDF
-// ==========================================================
+{/*------------------------------------------------------------GET PDF--------------------------------------------------------------- */}
+
 
 const getPDF = async (req, res) => {
 
@@ -244,23 +214,8 @@ const getPDF = async (req, res) => {
         const [pdf] = await db.query(
 
             `
-            SELECT *
-
-            FROM pdfs
-
-            WHERE
-
-            exam_id = ?
-
-            AND
-
-            subject_id = ?
-
-            AND
-
-            resource_type_id = ?
-
-            LIMIT 1
+            SELECT * FROM pdfs WHERE
+             exam_id = ? AND subject_id = ? AND resource_type_id = ? LIMIT 1
             `,
 
             [

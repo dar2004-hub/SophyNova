@@ -7,7 +7,7 @@ function Exam() {
     <>
       <ExamCards />
 
-      
+      <MockTestSection />
 
       <PreviousPapers />
 
