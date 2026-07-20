@@ -18,6 +18,8 @@ function UploadPDF() {
 
     const [loading, setLoading] = useState(false);
 
+    const [uploadedBy, setUploadedBy]= useState("")
+
     const exams = [
 
         { value:1,label:"UPSC"},
@@ -189,6 +191,8 @@ function UploadPDF() {
 
         formData.append("pdf",pdf);
 
+        formData.append("uploaded_by", uploadedBy)
+
         try{
 
             setLoading(true);
@@ -308,6 +312,16 @@ function UploadPDF() {
 
             type="text" placeholder="Enter PDF Title" value={title} onChange={(e)=>setTitle(e.target.value)}
             className="w-full p-3 sm:p-4 rounded-xl bg-[#181818] border border-red-600 text-white text-sm sm:text-base outline-none focus:border-red-400"/>
+        
+        <input
+            type="text"
+            placeholder="Uploaded By (Optional)"
+            value={uploadedBy}
+            onChange={(e)=>setUploadedBy(e.target.value)}
+            className="w-full p-3 rounded-xl bg-[#181818] border border-red-600 text-white text-sm sm:text-base file:bg-red-600 file:border-0 file:text-white file:px-3 sm:file:px-4 file:py-2 file:rounded-lg"/>
+
+
+
 
         <input
 
@@ -315,6 +329,13 @@ function UploadPDF() {
             type="file"
             accept=".pdf"
             onChange={(e)=>setPdf(e.target.files[0])}
+            className="w-full p-3 rounded-xl bg-[#181818] border border-red-600 text-white text-sm sm:text-base file:bg-red-600 file:border-0 file:text-white file:px-3 sm:file:px-4 file:py-2 file:rounded-lg"/>
+        
+        <input
+            type="text"
+            placeholder="Uploaded By (Optional)"
+            value={uploadedBy}
+            onChange={(e)=>setUploadedBy(e.target.value)}
             className="w-full p-3 rounded-xl bg-[#181818] border border-red-600 text-white text-sm sm:text-base file:bg-red-600 file:border-0 file:text-white file:px-3 sm:file:px-4 file:py-2 file:rounded-lg"/>
 
         <button
