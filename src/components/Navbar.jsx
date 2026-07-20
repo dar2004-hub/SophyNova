@@ -32,7 +32,7 @@ function Navbar() {
         </li>
 
         <li>
-          <Link to="/Exam" className="hover:text-cyan-400 transition">
+          <Link to="/PopularExams" className="hover:text-cyan-400 transition">
             Exams
           </Link>
         </li>

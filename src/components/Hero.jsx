@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { Navigate, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 function Hero() {
 const [search, setSearch] = useState("");
 const [results, setResults] = useState([]);
@@ -214,10 +215,8 @@ const [loading, setLoading] = useState(false);
           <button className="bg-cyan-500 px-8 py-3 rounded-xl hover:bg-cyan-600 transition w-full sm:w-auto">
             Start Learning
           </button>
-
-          <button className= "border-white px-8 py-3 rounded-xl hover:bg-white hover:text-black transition w-full sm:w-auto">
-            Explore Exams
-          </button>
+          
+          
 
         </div>
 

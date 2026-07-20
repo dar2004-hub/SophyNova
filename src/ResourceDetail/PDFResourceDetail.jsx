@@ -165,7 +165,8 @@ function PDFResourceDetails() {
 
 
     const API = import.meta.env.VITE_API_URL;
-    const pdfURL = `${API}/uploads/pdfs/${pdf.pdf_file}`;
+    const pdfURL = pdf.pdf_file;
+    window.open(pdfURL, "_blank");
 
     return (
 

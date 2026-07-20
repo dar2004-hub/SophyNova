@@ -16,6 +16,10 @@ import AboutDeveloper from "./Pages/AboutDeveloper";
 import Myjourney from "./Pages/Myjourney";
 import UploadPDF from "./Pages/Admin/UploadPDF";
 import PDFResourceDetails from "./ResourceDetail/PDFResourceDetail";
+import PopularExams from "./components/PopularExams";
+import ExamDashboard from "./components/ExamDashboard";
+
+
 
 
 import { Routes, Route } from "react-router-dom";
@@ -26,6 +30,7 @@ function App() {
       <Navbar />
 
       <Routes>
+        
         <Route path="/UploadPDF" element={<UploadPDF/>}/>
         <Route path="/" element={<Home />} />
         <Route path="/Exam" element={<Exam />} />
@@ -42,6 +47,8 @@ function App() {
         <Route path="/aboutdeveloper" element={<AboutDeveloper />}/>
         <Route path="/Myjourney" element={<Myjourney/>}/>
         <Route path="/pdf-details"element={<PDFResourceDetails/>}/>
+        <Route path ="/PopularExams"element={<PopularExams/>}/>
+        
         
         
         

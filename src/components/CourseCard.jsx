@@ -1,4 +1,7 @@
+
 import { courses } from "../data/courses";
+
+
 
 function CourseCard(){
 
@@ -85,6 +88,9 @@ return(
              ))}
 
         </div>
+
+
+      
 
 </section>
 
