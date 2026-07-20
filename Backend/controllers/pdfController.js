@@ -132,7 +132,7 @@ const uploadPDF = async (req, res) => {
                 subject_id,
                 resource_type_id,
                 pdf_title,
-                pdf_file
+                pdf_file,
                 uploaded_by
 
             )
