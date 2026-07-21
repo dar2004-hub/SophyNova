@@ -200,11 +200,18 @@ function UploadPDF() {
             
             const API_URL= import.meta.env.VITE_API_URL;
 
+            console.log(formData);
+console.log("Uploading...");
+
             const res=await axios.post(
 
+                
+
                 `${API_URL}/api/pdfs/upload`,
+                
 
                 formData,
+                
 
                 {
 
@@ -217,6 +224,7 @@ function UploadPDF() {
                 }
 
             );
+            console.log(res.data);
 
             alert(res.data.message);
 
@@ -240,10 +248,14 @@ function UploadPDF() {
             }
 
         }
+        
 
         catch(err){
+            console.log("Full Error:", err);
 
-            console.log(err);
+            console.log("Response:", err.response);
+
+            console.log("Data:", err.response?.data);
 
             alert(
 
