@@ -1,3 +1,5 @@
+const cloudinary = require("../config/cloudinary");
+const streamifier = require("streamifier");
 const db = require("../config/db");
 
 // ==========================================================
@@ -120,9 +122,47 @@ const uploadPDF = async (req, res) => {
     {/*--------------------------------------------------------------Insert PDF -----------------------------------------------------------------------*/}
 
 
+const uploadToCloudinary = () => {
 
-        const pdf_file = req.file.filename;
-        const [result] = await db.query(
+    return new Promise((resolve, reject) => {
+
+        const stream = cloudinary.uploader.upload_stream(
+
+            {
+
+                folder: "SophyNova_PDFs",
+
+                resource_type: "raw"
+
+            },
+
+            (error, result) => {
+
+                if (error) {
+
+                    reject(error);
+
+                } else {
+
+                    resolve(result);
+
+                }
+
+            }
+
+        );
+
+        streamifier.createReadStream(req.file.buffer).pipe(stream);
+
+    });
+
+};
+
+const uploadedFile = await uploadToCloudinary();
+
+const pdf_file = uploadedFile.secure_url;
+
+const [result] = await db.query(
 
             `
             INSERT INTO pdfs
