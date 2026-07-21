@@ -45,17 +45,17 @@ function LatestNotifications() {
 
                             <div>
 
-                                <h3 className="text-2xl font-semibold">
+                                <h3 className="text-lg sm:text-xl md:text-2xl">
                                     {item.title}
                                 </h3>
 
-                                <p className="text-gray-400 mt-2">
+                                <p className="text-sm sm:text-base md:text-lg">
                                     {item.date}
                                 </p>
 
                             </div>
 
-                            <button className="bg-cyan-500 px-5 py-2 rounded-lg hover:bg-cyan-600">
+                            <button className="bg-cyan-500 px-4 sm:px-6 py-2 sm:py-3 rounded-lg hover:bg-cyan-600">
                                 Read More
                             </button>
 

@@ -1,4 +1,6 @@
+
 import { Link } from "react-router-dom";
+
 
 function ExamCards() {
 
@@ -41,12 +43,12 @@ route:"/csit"
 }
 
 ];
-
+console.log(exams);
 return(
 
 <section className="bg-gray-950 text-white py-20">
 
-                 <h2 className="text-5xl font-bold text-center mb-14">
+                 <h2 className="text-3xl font-bold text-center mb-14">
 
                  Popular Exams
 
@@ -60,21 +62,21 @@ return(
 
         <Link key={index} to={exam.route}>
 
-        <div className="bg-gray-800 rounded-2xl p-8 hover:bg-cyan-700 hover:scale-105 transition duration-300 cursor-pointer">
+        <div className="bg-gray-800 rounded-xl p-4 hover:bg-cyan-700 hover:scale-105 transition duration-300 cursor-pointer">
 
-            <h3 className="text-3xl font-bold">
+            <h3 className="text-sm sm:text-lg font-bold">
 
                 {exam.title}
 
             </h3>
 
-                <p className="mt-3 text-gray-300">
+                <p className="mt-2 text-xs sm:text-sm-text gray-300">
 
                     {exam.description}
 
                 </p>
 
-                    <button className="mt-6 bg-white text-black px-5 py-2 rounded-lg">
+                    <button className="mt-3 bg-white text-black px-3 py-2 rounded-lg text-xs sm:text-sm w-full">
 
                      Explore
 
