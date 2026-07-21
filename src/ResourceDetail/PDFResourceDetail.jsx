@@ -161,12 +161,11 @@ function PDFResourceDetails() {
 
     }
 
-{/*  -----------------------------------------------------------------PDF URL --------------------------------------------------------------------*/}
+//  -----------------------------------------------------------------PDF URL --------------------------------------------------------------------
 
 
     const API = import.meta.env.VITE_API_URL;
     const pdfURL = pdf.pdf_file;
-    window.open(pdfURL, "_blank");
 
     return (
 
@@ -220,31 +219,25 @@ function PDFResourceDetails() {
 
                     <div className="flex flex-wrap gap-5 p-8">
 
-                        <button
-
-                            onClick={() => window.open(pdfURL, "_blank")}
-
+                       <button
+                            onClick={() =>
+                                document
+                                    .getElementById("pdf-viewer")
+                                    ?.scrollIntoView({ behavior: "smooth" })
+                            }
                             className="bg-red-600 hover:bg-red-700 px-8 py-4 rounded-xl text-xl font-bold transition"
-
                         >
-
                             👁 Preview PDF
-
                         </button>
-
-                        <a
-
-                            href={pdfURL}
-
-                            download
-
-                            className="border-2 border-red-600 hover:bg-red-600 px-8 py-4 rounded-xl text-xl font-bold transition"
-
-                        >
-
-                            ⬇ Download PDF
-
-                        </a>
+                            <a
+                                href={pdfURL}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                download
+                                className="border-2 border-red-600 hover:bg-red-600 px-8 py-4 rounded-xl text-xl font-bold transition"
+                            >
+                                ⬇ Download PDF
+                            </a>
 
                         <button
 
@@ -265,19 +258,13 @@ function PDFResourceDetails() {
                     <div className="border-t border-red-700">
 
                         <iframe
-
-                            src={pdfURL}
-
-                            title="PDF Preview"
-
-                            width="100%"
-
-                            height="900px"
-
-                            className="bg-white"
-
-                        />
-
+                          id="pdf-viewer"
+                          src={pdfURL}
+                          title="PDF Preview"
+                          width="100%"
+                          height="900px"
+                          className="bg-white rounded-b-3xl"></iframe>
+                        
                     </div>
 
                 </div>
