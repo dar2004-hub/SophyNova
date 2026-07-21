@@ -1,5 +1,4 @@
-const cloudinary = require("../config/cloudinary");
-const streamifier = require("streamifier");
+const supabase = require("../config/supabase");
 const db = require("../config/db");
 
 // ==========================================================
@@ -123,52 +122,31 @@ const uploadPDF = async (req, res) => {
 
     {/*--------------------------------------------------------------Insert PDF -----------------------------------------------------------------------*/}
 
+const fileName =   `${Date.now()}-${req.file.originalname}`;
 
-const uploadToCloudinary = () => {
-
-    return new Promise((resolve, reject) => {
-
-        const path = require ("path");
-
-        const stream = cloudinary.uploader.upload_stream(
-
-            {
-
-                folder: "SophyNova_PDFs",
-                public_id: Date.now().toString(),
-                filename_override: req.file.originalname,
-                resource_type: "raw",
-                use_filename: true,
-                unique_filename : true
-
-            },
-
-            (error, result) => {
-
-                if (error) {
-
-                    reject(error);
-
-                } else {
-
-                    resolve(result);
-
-                }
-
-            }
-
-        );
-
-        streamifier.createReadStream(req.file.buffer).pipe(stream);
-
+const { data, error } = await supabase.storage
+    .from("pdfs")
+    .upload(fileName, req.file.buffer, {
+        contentType: "application/pdf",
+        upsert: false,
     });
 
-};
+if (error) {
+    return res.status(500).json({
+        success: false,
+        message: error.message,
+    });
+}
 
-const uploadedFile = await uploadToCloudinary();
-console.log(uploadedFile)
+const { data: publicUrlData } = supabase.storage
+    .from("pdfs")
+    .getPublicUrl(fileName);
 
-const pdf_file = uploadedFile.secure_url;
+const pdf_file = publicUrlData.publicUrl;
+             
+
+
+
 
 const [result] = await db.query(
 

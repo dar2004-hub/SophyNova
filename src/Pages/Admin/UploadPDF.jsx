@@ -189,7 +189,7 @@ function UploadPDF() {
 
         formData.append("pdf_title",title);
 
-        formData.append("pdf",pdf);
+        formData.append("pdf", pdf);
 
         formData.append("uploaded_by", uploadedBy)
 
