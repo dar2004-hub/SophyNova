@@ -119,6 +119,8 @@ const uploadPDF = async (req, res) => {
 
         }
 
+    console.log(req.file);
+
     {/*--------------------------------------------------------------Insert PDF -----------------------------------------------------------------------*/}
 
 
@@ -126,13 +128,18 @@ const uploadToCloudinary = () => {
 
     return new Promise((resolve, reject) => {
 
+        const path = require ("path");
+
         const stream = cloudinary.uploader.upload_stream(
 
             {
 
                 folder: "SophyNova_PDFs",
-
-                resource_type: "raw"
+                public_id: Date.now().toString(),
+                filename_override: req.file.originalname,
+                resource_type: "raw",
+                use_filename: true,
+                unique_filename : true
 
             },
 
@@ -159,6 +166,7 @@ const uploadToCloudinary = () => {
 };
 
 const uploadedFile = await uploadToCloudinary();
+console.log(uploadedFile)
 
 const pdf_file = uploadedFile.secure_url;
 
@@ -282,7 +290,10 @@ const getPDF = async (req, res) => {
         return res.status(200).json({
 
             success: true,
-            pdf: pdf[0]
+            pdf:{
+                ... pdf[0],
+                url:pdf[0].pdf_file
+            }
 
         });
 
