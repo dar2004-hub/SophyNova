@@ -44,7 +44,7 @@ function StudyResources() {
 
         <section className="bg-gray-900 text-white py-20">
 
-            <h2 className="text-5xl font-bold text-center mb-14">
+            <h2 className="text-3xl font-bold text-center mb-12">
                 📚 Study Resources
             </h2>
 
@@ -52,25 +52,25 @@ function StudyResources() {
                 Everything you need to crack Government Exams in one place.
             </p>
 
-            <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-8">
+            <div className="max-w mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 px-4">
 
                 {resources.map((resource, index) => (
 
                     <div
                         key={index}
-                        className="bg-gray-800 rounded-2xl p-8 shadow-xl hover:scale-105 hover:bg-cyan-700 transition duration-300"
+                        className="bg-gray-800 rounded-2xl p-3 sm:p-5 shadow-xl hover:scale-105 hover:bg-cyan-700 transition duration-300"
                     >
 
-                        <h3 className="text-3xl font-bold mb-4">
+                        <h3 className="text-lg sm:text-xl font-bold mb-3">
                             {resource.title}
                         </h3>
 
-                        <p className="text-gray-300 mb-6">
+                        <p className="text-gray-300 mb-3">
                             {resource.description}
                         </p>
 
                         <button
-                            className="bg-cyan-500 px-5 py-3 rounded-lg hover:bg-cyan-600 transition"
+                            className="bg-cyan-500 px-3 py-1 rounded-lg hover:bg-cyan-600 transition"
                         >
                             {resource.button}
                         </button>

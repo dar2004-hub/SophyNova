@@ -62,7 +62,7 @@ function AboutDeveloper() {
 
         <div className="absolute -bottom-3 -right-3 bg-red-600 px-5 py-2 rounded-full text-white font-semibold">
 
-            Creator
+            Mission
 
         </div>
 

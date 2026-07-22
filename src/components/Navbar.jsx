@@ -8,11 +8,6 @@ function Navbar() {
      
      
       <div className="flex items-center gap-3">
-        <img
-          src="/Sophy_Logo.png"
-          alt="SophyNova Logo"
-          className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 hover:scale-110 transition duration-300"
-        />
 
         <h1 className="text-xl sm:text-2xl font-bold">
           <span className="text-cyan-400">Sophy</span>

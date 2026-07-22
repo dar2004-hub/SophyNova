@@ -28,7 +28,7 @@ function LatestNotifications() {
 
         <section className="bg-gray-950 text-white py-20">
 
-            <h2 className="text-5xl font-bold text-center mb-12">
+            <h2 className="text-lg sm:text-xl font-bold text-center mb-12">
                 Latest Notifications
             </h2>
 
@@ -38,7 +38,7 @@ function LatestNotifications() {
 
                     <div
                         key={index}
-                        className="bg-gray-800 rounded-xl p-6 mb-5 hover:bg-gray-700 transition duration-300 shadow-lg"
+                        className="bg-gray-800 rounded-xl p-3 sm:p-5 mb-5 hover:bg-gray-700 transition duration-300 shadow-lg"
                     >
 
                         <div className="flex justify-between items-center">
@@ -55,7 +55,7 @@ function LatestNotifications() {
 
                             </div>
 
-                            <button className="bg-cyan-500 px-4 sm:px-6 py-2 sm:py-3 rounded-lg hover:bg-cyan-600">
+                            <button className="bg-cyan-500 px-5 py-2 sm:py-2 rounded-lg hover:bg-cyan-600">
                                 Read More
                             </button>
 

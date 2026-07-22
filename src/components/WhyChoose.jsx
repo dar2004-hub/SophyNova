@@ -52,24 +52,24 @@ function WhyChoose() {
                 One platform for every Government Exam aspirant.
             </p>
 
-            <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-8">
+            <div className="max-w mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 px-4">
 
                 {features.map((feature, index) => (
 
                     <div
                         key={index}
-                        className="bg-gray-800 rounded-3xl p-8 hover:bg-cyan-600 hover:scale-105 transition duration-300 shadow-2xl cursor-pointer"
+                        className="bg-gray-800 rounded-3xl p-3 sm:p-5 hover:bg-cyan-600 hover:scale-105 transition duration-300 shadow-2xl cursor-pointer"
                     >
 
-                        <div className="text-6xl mb-6">
+                        <div className="text-3xl mb-4">
                             {feature.icon}
                         </div>
 
-                        <h3 className="text-3xl font-bold mb-4">
+                        <h3 className="text-lg sm:text-xl font-bold mb-4">
                             {feature.title}
                         </h3>
 
-                        <p className="text-gray-300">
+                        <p className="text-lg sm:text-lg gray-300">
                             {feature.description}
                         </p>
 
