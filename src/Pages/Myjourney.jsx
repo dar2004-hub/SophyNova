@@ -24,7 +24,7 @@ function Myjourney() {
             className="text-center"
         >
 
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white">
+            <h2 className="text-3xl sm:text-4xl md:text-3xl lg:text-3xl font-black text-white">
 
                 My <span className="text-red-500">Journey</span>
 
@@ -57,7 +57,7 @@ function Myjourney() {
 
         >
 
-            <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-red-500 mb-6 sm:mb-10">
+            <h3 className="text-2xl sm:text-2xl lg:text-4xl font-bold text-red-500 mb-6 sm:mb-10">
 
                 How Everything Started...
 
@@ -137,11 +137,11 @@ function Myjourney() {
     </div>
 
     
-    <div className="fixed top-4 left-4 sm:top-6 sm:left-6 z-50">
+    <div className="fixed top-4 left-4 sm:top-2 sm:left-4 z-50">
     
         <button
             onClick={() => navigate(-1)}
-            className="group flex items-center gap-3 px-6 py-3 rounded-full bg-black/70 backdrop-blur-lg
+            className="group flex items-center gap-3 px-3 py-1 rounded-full bg-black/70 backdrop-blur-lg
                        border border-red-500 text-white hover:bg-red-600 hover:border-red-400 transition-all duration-300
                        shadow-lg shadow-red-900/30"
         >

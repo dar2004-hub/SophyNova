@@ -56,11 +56,11 @@ function AboutDeveloper() {
 
 <div>
 
-    <div className="relative w-72 h-72">
+    <div className="relative w-32 h-32">
 
         <img src={developer} alt="Developer"className="rounded-full object-cover w-full h-full border-[6px] border-red-600 shadow-[0_0_60px_rgba(255,0,0,.45)]"/>
 
-        <div className="absolute -bottom-3 -right-3 bg-red-600 px-5 py-2 rounded-full text-white font-semibold">
+        <div className="absolute -bottom-3 -right-3 bg-red-600 px-1  rounded-full text-white font-semibold">
 
             Mission
 
@@ -89,16 +89,16 @@ function AboutDeveloper() {
 
 <div>
 
-    <p className="text-red-500 font-semibold uppercase tracking-[6px]">
+    <p className="text-red-500 font-semibold uppercase tracking-[3px]">
         Welcome To
 
     </p>
 
-    <h1 className="text-6xl font-black text-white mt-4">
+    <h1 className="text-xl font-black text-white mt-4">
         Sophy<span className="text-red-500">Nova</span>
     </h1>
 
-    <h2 className="text-3xl text-white font-bold mt-8">
+    <h2 className="text-2xl text-white font-bold mt-8">
    
     Hi,
     

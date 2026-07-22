@@ -61,7 +61,7 @@ function AboutSophyNova() {
           className="text-center"
         >
 
-          <h1 className="text-6xl font-extrabold text-white mb-6">
+          <h1 className="text-3xl font-extrabold text-white mb-3">
 
             Welcome To
 
@@ -90,13 +90,13 @@ function AboutSophyNova() {
           className="mt-20 bg-white/10 backdrop-blur-lg border border-red-700 rounded-3xl p-10 shadow-2xl"
         >
 
-          <h2 className="text-4xl font-bold text-red-400 mb-8">
+          <h2 className="text-3xl font-bold text-red-400 mb-8">
 
             Our Mission
 
           </h2>
 
-          <p className="text-gray-200 text-lg leading-9">
+          <p className="text-gray-200 text-sm leading-9">
 
             Thousands of talented students dream of becoming engineers,
             officers, teachers, researchers and government employees.
@@ -142,14 +142,14 @@ function AboutSophyNova() {
 
         {/* Feature Cards */}
 
-        <div className="grid lg:grid-cols-2 gap-8 mt-20">
+        <div className="grid grid-cols-3:grid-cols-4 gap-4 mt-20">
 
           <motion.div
             whileHover={{ scale: 1.04 }}
             className="bg-black/40 border border-red-700 rounded-2xl p-8"
           >
 
-            <FaBookOpen className="text-5xl text-red-500 mb-6" />
+            <FaBookOpen className="text-4x1 text-red-500 mb-6" />
 
             <h2 className="text-white text-2xl font-bold mb-4">
 
@@ -171,7 +171,7 @@ function AboutSophyNova() {
             className="bg-black/40 border border-red-700 rounded-2xl p-8"
           >
 
-            <FaGraduationCap className="text-5xl text-red-500 mb-6" />
+            <FaGraduationCap className="text-3xl text-red-500 mb-6" />
 
             <h2 className="text-white text-2xl font-bold mb-4">
 
@@ -193,7 +193,7 @@ function AboutSophyNova() {
             className="bg-black/40 border border-red-700 rounded-2xl p-8"
           >
 
-            <FaLaptopCode className="text-5xl text-red-500 mb-6" />
+            <FaLaptopCode className="text-3xl text-red-500 mb-6" />
 
             <h2 className="text-white text-2xl font-bold mb-4">
 
@@ -215,7 +215,7 @@ function AboutSophyNova() {
             className="bg-black/40 border border-red-700 rounded-2xl p-8"
           >
 
-            <FaUserGraduate className="text-5xl text-red-500 mb-6" />
+            <FaUserGraduate className="text-3xl text-red-500 mb-6" />
 
             <h2 className="text-white text-2xl font-bold mb-4">
 
