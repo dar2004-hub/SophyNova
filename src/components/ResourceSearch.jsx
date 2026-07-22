@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Select from "react-select";
 import axios from "axios";
-import { Search } from "lucide-react";
+import { Search, SearchCheckIcon } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 
@@ -10,9 +10,12 @@ function Resources() {
   
 const navigate = useNavigate();  
 const [exam, setExam] = useState(null);
-const [keyword, setKeyword] = useState("");
 const [results, setResults] = useState([]);
 const [loading, setLoading] = useState(false);
+const [search, setSearch]=useState("");
+const [keyword, setkeyword]=("")
+const [subjects, setSubjects]= useState([]);
+
 
     const exams = [
 
@@ -30,6 +33,46 @@ const [loading, setLoading] = useState(false);
         { value:12,label:"Defence"}
 
     ];
+
+
+const searchSubjects = async (value) => {
+    console.log("Typing:", value);
+
+    setSearch(value);
+
+    if (!exam || value.trim() === "") {
+        setSubjects([]);
+        return;
+    }
+
+    try {
+
+        const API = import.meta.env.VITE_API_URL;
+
+        const res = await axios.get(
+            `${API}/api/subjects/search`,
+            {
+                params: {
+                    exam_id: exam.value,
+                    keyword: value
+                }
+            }
+            
+        );
+
+        setSubjects(res.data.subjects || []);
+
+    } catch (err) {
+
+        console.log(err);
+        setSubjects([]);
+
+    }
+
+};
+
+
+
 const handleSearch = async () => {
 
     if (!exam) {
@@ -39,7 +82,7 @@ const handleSearch = async () => {
 
     }
 
-    if (keyword.trim() === "") {
+    if (search.trim() === "")  {
 
         alert("Enter Subject");
         return;
@@ -58,12 +101,11 @@ const handleSearch = async () => {
             {
                 params: {
                     exam_id: exam.value,
-                    keyword: keyword
+                    keyword: search
                 }
             }
         );
 
-        console.log("Backend Response :", res.data);
 
         setResults(res.data.resources || []);
 
@@ -85,6 +127,7 @@ const handleSearch = async () => {
 
     }
 
+
 };
     return(
 
@@ -94,7 +137,7 @@ const handleSearch = async () => {
 
         <div className="text-center">
 
-            <h1 className="text-6xl font-extrabold text-white">
+            <h1 className="text-xl font-extrabold text-white">
 
               Find Your
 
@@ -107,7 +150,7 @@ const handleSearch = async () => {
 
             </h1>
 
-            <p className="mt-5 text-xl text-gray-300">
+            <p className="mt-5 text-lg text-gray-300">
 
                 Search Notes • Books • PYQs • Videos • Mock Tests • PDFs
 
@@ -121,7 +164,7 @@ const handleSearch = async () => {
 
                 <div>
 
-                    <h2 className="text-white text-3xl font-bold mb-5">
+                    <h2 className=" flex justify center text-white text-sm font-bold mb-5">
 
                      🎯 Select Exam
 
@@ -155,26 +198,75 @@ singleValue:(base)=>({...base,color:"white"})
 
                 <div>
 
-                    <h2 className="text-white text-2xl font-bold mb-3">
+                    <h2 className="text-white text-sm font-bold mb-3">
 
                         📚 Subject / Topic
 
                     </h2>
 
-                    <input type="text" placeholder="Operating System" value={keyword} onChange={(e)=>setKeyword(e.target.value)}
+
+                    {subjects.length > 0 && (
+
+<div className="bg-[#181818] border border-red-600 rounded-xl mt-2 max-h-60 overflow-y-auto">
+
+    {subjects.map((subject) => (
+
+        <div
+            key={subject.subject_id}
+            onClick={() => {
+                setSearch(subject.subject_name);
+                setSubjects([]);
+            }}
+            className="px-4 py-3 hover:bg-red-600 cursor-pointer text-white"
+        >
+            {subject.subject_name}
+        </div>
+
+    ))}
+
+</div>
+
+)}
+
+                    <input type="text" placeholder="Type Subjects" value={search} onChange={(e)=>searchSubjects(e.target.value)}
                          className="w-full p-5 rounded-2xl bg-[#181818] border-2 border-red-600 text-white text-xl
                          placeholder:text-gray-500 outline-none focus:border-red-400 transition"/>
 
+
+                         {subjects.length > 0 && (
+
+<div className="absolute w-full bg-[#181818] border border-red-600 rounded-xl mt-2 max-h-60 overflow-y-auto z-50">
+
+    {subjects.map((subject) => (
+
+        <div
+            key={subject.subject_id}
+            onClick={() => {
+                setSearch(subject.subject_name);
+                setSubjects([]);
+            }}
+            className="px-4 py-3 cursor-pointer text-white hover:bg-red-600 transition"
+        >
+
+            {subject.subject_name}
+
+        </div>
+
+    ))}
+
+</div>
+
+)}
                 </div>
 
             </div>
 
             <div className="flex justify-center mt-14">
 
-                <button onClick={handleSearch} className="flex items-center gap-4 bg-red-600 hover:bg-red-700 px-14 py-5
-                rounded-full text-2xl font-extrabold shadow-[0_0_30px_rgba(255,0,0,.6)] transition duration-300 hover:scale-105">
+                <button onClick={handleSearch} className="flex items-center gap-3 bg-red-600 hover:bg-red-700 px-4 py-3
+                rounded-full text-sm font-extrabold shadow-[0_0_30px_rgba(255,0,0,.6)] transition duration-300 hover:scale-105">
 
-                <Search size={30}/> SEARCH NOW
+                <Search size={3}/>SEARCH NOW
 
                </button>
 

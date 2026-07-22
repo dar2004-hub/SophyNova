@@ -51,47 +51,13 @@ function UploadPDF() {
 
     const customStyle={
 
-        control:(base)=>({
+        control:(base)=>({...base, background:"#181818", border:"2px solid #dc2626", borderRadius:"15px", padding:"6px" }),
 
-            ...base,
+        menu:(base)=>({ ...base, background:"#181818" }),
 
-            background:"#181818",
+        option:(base,state)=>({...base, background:state.isFocused?"#dc2626":"#181818", color:"white" }),
 
-            border:"2px solid #dc2626",
-
-            borderRadius:"15px",
-
-            padding:"6px"
-
-        }),
-
-        menu:(base)=>({
-
-            ...base,
-
-            background:"#181818"
-
-        }),
-
-        option:(base,state)=>({
-
-            ...base,
-
-            background:state.isFocused?"#dc2626":"#181818",
-
-            color:"white"
-
-        }),
-
-        singleValue:(base)=>({
-
-            ...base,
-
-            color:"white"
-
-        })
-
-    };
+        singleValue:(base)=>({ ...base, color:"white"  }) };
 
     useEffect(()=>{
 
@@ -199,17 +165,9 @@ function UploadPDF() {
 
             
             const API_URL= import.meta.env.VITE_API_URL;
-
-            console.log(formData);
-console.log("Uploading...");
-
             const res=await axios.post(
 
-                
-
                 `${API_URL}/api/pdfs/upload`,
-                
-
                 formData,
                 
 

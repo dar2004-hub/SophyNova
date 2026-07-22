@@ -243,7 +243,7 @@ function PDFResourceDetails() {
 
                             onClick={() => navigate(-1)}
 
-                            className="border border-gray-600 hover:bg-gray-800 px-8 py-4 rounded-xl text-xl font-bold transition"
+                            className="border border-gray-600 hover:bg-gray-800 px-3 py-2 rounded-xl text-sm font-bold transition"
 
                         >
 

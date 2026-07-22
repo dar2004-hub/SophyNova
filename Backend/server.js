@@ -41,7 +41,6 @@ app.use(express.urlencoded({ extended: true }));
 
 // --------------------------------------------------------- ROUTES ---------------------------------------------------------------------
 
-
 const homeRoutes = require("./routes/homeRoutes");
 const searchRoutes = require("./routes/searchRoutes");
 const examRoutes = require("./routes/examRoutes");
@@ -68,7 +67,7 @@ app.use("/api/previouspapers", previousPaperRoutes);
 app.use("/api/notifications", notificationRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/profile", profileRoutes);
-app.use("/api/pdfs", pdfRoutes);
+
 
 // ------------------------------------------------------- ROOT ----------------------------------------------------------
 app.get("/", (req, res) => {
