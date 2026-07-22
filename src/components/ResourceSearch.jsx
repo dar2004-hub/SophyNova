@@ -170,63 +170,21 @@ const handleSearch = async () => {
 
                     </h2>
 
-                    <Select
-
-                    options={exams}
-
-                    placeholder="Search Exam..."
- 
-                    value={exam}
-
-                    onChange={setExam}
-
-styles={{
-
-control:(base)=>({...base,background:"#181818",border:"2px solid red",padding:"10px",borderRadius:"15px",color:"white"}),
-
-menu:(base)=>({...base,background:"#222"}),
-
-option:(base,state)=>({...base,background:state.isFocused?"red":"#222",color:"white"}),
-
-singleValue:(base)=>({...base,color:"white"})
-
-}}
-
-/>
+                    <Select options={exams} placeholder="Search Exam..." value={exam} onChange={setExam} styles={{
+                         control:(base)=>({...base,background:"#181818",border:"2px solid red",padding:"10px",borderRadius:"15px",color:"white"}),
+                         menu:(base)=>({...base,background:"#222"}),option:(base,state)=>({...base,background:state.isFocused?"red":"#222",color:"white"}),
+                         singleValue:(base)=>({...base,color:"white"})
+                        }
+                    }/>
 
                 </div>
-
-                <div>
-
+                 <div>
                     <h2 className="text-white text-sm font-bold mb-3">
-
                         📚 Subject / Topic
+                        </h2>
+                       
 
-                    </h2>
 
-
-                    {subjects.length > 0 && (
-
-<div className="bg-[#181818] border border-red-600 rounded-xl mt-2 max-h-60 overflow-y-auto">
-
-    {subjects.map((subject) => (
-
-        <div
-            key={subject.subject_id}
-            onClick={() => {
-                setSearch(subject.subject_name);
-                setSubjects([]);
-            }}
-            className="px-4 py-3 hover:bg-red-600 cursor-pointer text-white"
-        >
-            {subject.subject_name}
-        </div>
-
-    ))}
-
-</div>
-
-)}
 
                     <input type="text" placeholder="Type Subjects" value={search} onChange={(e)=>searchSubjects(e.target.value)}
                          className="w-full p-5 rounded-2xl bg-[#181818] border-2 border-red-600 text-white text-xl
@@ -320,36 +278,20 @@ singleValue:(base)=>({...base,color:"white"})
 
                     }}
 
-                    className="bg-[#181818]
-                               border
-                               border-red-600
-                               rounded-2xl
-                               p-6
-                               shadow-lg
-                               cursor-pointer
-                               hover:scale-105
-                               hover:shadow-[0_0_25px_rgba(255,0,0,.5)]
-                               transition-all duration-300"
-
-                >
+                    className="bg-[#181818] border border-red-600  rounded-2xl p-6 shadow-lg cursor-pointer hover:scale-105
+                               hover:shadow-[0_0_25px_rgba(255,0,0,.5)]transition-all duration-300">
 
                     <h2 className="text-red-500 text-2xl font-bold">
-
-                        {item.resource_type_name}
-
-                    </h2>
+                         {item.resource_type_name}
+                          </h2>
 
                     <h3 className="text-white mt-4 text-lg font-semibold">
-
                         {item.title}
-
-                    </h3>
+                        </h3>
 
                     <p className="text-gray-400 mt-3">
-
                         {item.description}
-
-                    </p>
+                         </p>
 
                 </div>
 
