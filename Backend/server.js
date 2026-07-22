@@ -67,6 +67,7 @@ app.use("/api/previouspapers", previousPaperRoutes);
 app.use("/api/notifications", notificationRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/profile", profileRoutes);
+app.use("/api/pdfs", pdfRoutes);
 
 
 // ------------------------------------------------------- ROOT ----------------------------------------------------------
