@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useEffect, useRef } from "react";
 import Select from "react-select";
 import axios from "axios";
 import { Search, SearchCheckIcon } from "lucide-react";
@@ -7,14 +8,13 @@ import { useNavigate } from "react-router-dom";
 
 function Resources() {
 
-  
+const dropdownRef = useRef(null);  
 const navigate = useNavigate();  
 const [exam, setExam] = useState(null);
 const [results, setResults] = useState([]);
 const [loading, setLoading] = useState(false);
 const [search, setSearch]=useState("");
 const [keyword, setkeyword]=("")
-
 const [subjects, setSubjects]= useState([]);
 
 
@@ -34,6 +34,29 @@ const [subjects, setSubjects]= useState([]);
         { value:12,label:"Defence"}
 
     ];
+
+
+
+useEffect(() => {
+
+    const handleClickOutside = (event) => {
+
+        if (
+            dropdownRef.current &&
+            !dropdownRef.current.contains(event.target)
+        ) {
+            setSubjects([]);
+        }
+
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+        document.removeEventListener("mousedown", handleClickOutside);
+    };
+
+}, []);
 
 
 const searchSubjects = async (value) => {
@@ -179,43 +202,33 @@ const handleSearch = async () => {
                     }/>
 
                 </div>
-                 <div>
-                    <h2 className="text-white text-sm font-bold mb-3">
+                    
+                    <div className="relative w-full" ref={dropdownRef}>
+                       <h2 className="text-white text-sm font-bold mb-3">
                         📚 Subject / Topic
                         </h2>
-                       
-
-
-
-                    <input type="text" placeholder="Type Subjects" value={search} onChange={(e)=>searchSubjects(e.target.value)}
-                         className="w-full p-5 rounded-2xl bg-[#181818] border-2 border-red-600 text-white text-xl
+                       <input type="text" placeholder="Type Subjects" value={search} onChange={(e)=>searchSubjects(e.target.value)}
+                         className="w-full p-3 sm:p-4 lg:p-5 rounded-2xl bg-[#181818] border-2 border-red-600 text-white text-sm sm:text-base lg:text-lg
                          placeholder:text-gray-500 outline-none focus:border-red-400 transition"/>
-
-
                          {subjects.length > 0 && (
+                            <div className="absolute top-full left-0 w-full bg-[#181818] border border-red-600 rounded-xl shadow-xl mt-2 max-h-60 overflow-y-auto  z-50">
+                                  {subjects.map((subject) => (
+                                     <div
+                                      key={subject.subject_id} onClick={() => { setSearch(subject.subject_name);setSubjects([]); 
 
-<div className="absolute w-full bg-[#181818] border border-red-600 rounded-xl mt-2 max-h-60 overflow-y-auto z-50">
+                                      }
+                                    } className="px-4 py-3 cursor-pointer text-sm sm:text-base text-whitecursor-pointer hover:bg-red-600 transition" >
+                                        {subject.subject_name}
+                                         </div>
+                                    )
+                                )
+                            }
 
-    {subjects.map((subject) => (
+                </div>
 
-        <div
-            key={subject.subject_id}
-            onClick={() => {
-                setSearch(subject.subject_name);
-                setSubjects([]);
-            }}
-            className="px-4 py-3 cursor-pointer text-white hover:bg-red-600 transition"
-        >
-
-            {subject.subject_name}
-
-        </div>
-
-    ))}
-
-</div>
-
-)}
+       )
+       
+    }
                 </div>
 
             </div>
