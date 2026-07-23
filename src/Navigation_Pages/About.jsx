@@ -146,12 +146,12 @@ function AboutSophyNova() {
 
           <motion.div
             whileHover={{ scale: 1.04 }}
-            className="bg-black/40 border border-red-700 rounded-2xl p-8"
+            className="bg-black/40 border border-red-700 rounded-2xl p-3"
           >
 
             <FaBookOpen className="text-4x1 text-red-500 mb-6" />
 
-            <h2 className="text-white text-2xl font-bold mb-4">
+            <h2 className="text-white text-xl font-bold mb-4">
 
               Free Learning Resources
 
@@ -168,12 +168,12 @@ function AboutSophyNova() {
 
           <motion.div
             whileHover={{ scale: 1.04 }}
-            className="bg-black/40 border border-red-700 rounded-2xl p-8"
+            className="bg-black/40 border border-red-700 rounded-2xl p-3"
           >
 
-            <FaGraduationCap className="text-3xl text-red-500 mb-6" />
+            <FaGraduationCap className="text-4xl text-red-500 mb-6" />
 
-            <h2 className="text-white text-2xl font-bold mb-4">
+            <h2 className="text-white text-xl font-bold mb-4">
 
               Mock Tests
 
@@ -190,12 +190,12 @@ function AboutSophyNova() {
 
           <motion.div
             whileHover={{ scale: 1.04 }}
-            className="bg-black/40 border border-red-700 rounded-2xl p-8"
+            className="bg-black/40 border border-red-700 rounded-2xl p-3"
           >
 
-            <FaLaptopCode className="text-3xl text-red-500 mb-6" />
+            <FaLaptopCode className="text-4xl text-red-500 mb-6" />
 
-            <h2 className="text-white text-2xl font-bold mb-4">
+            <h2 className="text-white text-xl font-bold mb-4">
 
               Technical Learning
 
@@ -212,12 +212,12 @@ function AboutSophyNova() {
 
           <motion.div
             whileHover={{ scale: 1.04 }}
-            className="bg-black/40 border border-red-700 rounded-2xl p-8"
+            className="bg-black/40 border border-red-700 rounded-2xl p-3"
           >
 
-            <FaUserGraduate className="text-3xl text-red-500 mb-6" />
+            <FaUserGraduate className="text-4xl text-red-500 mb-6" />
 
-            <h2 className="text-white text-2xl font-bold mb-4">
+            <h2 className="text-white text-xl font-bold mb-4">
 
               Equal Opportunity
 
@@ -243,7 +243,7 @@ function AboutSophyNova() {
           className="mt-20 text-center"
         >
 
-          <h2 className="text-4xl font-bold text-red-500">
+          <h2 className="text-2xl font-bold text-red-500">
 
             "Education is a Right, Not a Luxury."
 
@@ -263,7 +263,7 @@ function AboutSophyNova() {
 
         <Link to ="/AboutDeveloper">
 
-          <button className="group px-10 py-4 rounded-full bg-gradient-to-r from-red-700 via-red-600 to-red-500 text-white font-bold text-lg shadow-lg hover:scale-105 transition duration-300 flex items-center gap-3">
+          <button className="group px-4 py-4 rounded-full bg-gradient-to-r from-red-700 via-red-600 to-red-500 text-white font-bold text-xs shadow-lg hover:scale-105 transition duration-300 flex items-center gap-2">
           
             About Developer
 
