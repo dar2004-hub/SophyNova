@@ -44,9 +44,8 @@ function Navbar() {
           </Link>
         </li>
 
-      </ul>
+      
        
-      <ul className="flex justify-center">
       
         <li>
           
@@ -56,15 +55,7 @@ function Navbar() {
 
           </Link>
         </li>
-
-      </ul>
-
-
-      
-       
-      <ul className="flex justify-center">
-      
-        <li>
+         <li>
           
           <Link to="/Thought" className="hover:text-cyan-400 transition">
 
@@ -72,7 +63,6 @@ function Navbar() {
 
           </Link>
         </li>
-
       </ul>
 
       
