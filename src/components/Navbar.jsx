@@ -55,7 +55,16 @@ function Navbar() {
 
           </Link>
         </li>
+         
          <li>
+          
+          <Link to="/SchoolUpload" className="hover:text-cyan-400 transition">
+
+            School
+
+          </Link>
+        </li>
+        <li>
           
           <Link to="/Thought" className="hover:text-cyan-400 transition">
 
@@ -63,6 +72,7 @@ function Navbar() {
 
           </Link>
         </li>
+
       </ul>
 
       

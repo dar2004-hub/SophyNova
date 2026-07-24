@@ -32,6 +32,7 @@ const [subjects, setSubjects]= useState([]);
         { value:10,label:"GATE CSE/IT"},
         { value:11,label:"State PSC"},
         { value:12,label:"Defence"}
+        
 
     ];
 
@@ -309,7 +310,10 @@ const handleSearch = async () => {
 
                 </div>
 
+                
+
             ))}
+
 
         </div>
 
@@ -324,6 +328,13 @@ const handleSearch = async () => {
     )}
 
             </div>
+
+                        <button
+  className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg"
+>
+    🎓 University/School
+</button>
+
         
         </div>
 
