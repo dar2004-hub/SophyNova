@@ -19,6 +19,8 @@ import PDFResourceDetails from "./ResourceDetail/PDFResourceDetail";
 import PopularExams from "./components/PopularExams";
 import ExamDashboard from "./components/ExamDashboard";
 import ExamCards from "./components/ExamCards";
+import Thought from "./components/Thought"
+
 
 
 
@@ -32,6 +34,7 @@ function App() {
 
       <Routes>
         
+        <Route path="/Thought" element={<Thought/>}/>
         <Route path="/UploadPDF" element={<UploadPDF/>}/>
         <Route path="/" element={<Home />} />
         <Route path="/exam" element={<Exam />} />

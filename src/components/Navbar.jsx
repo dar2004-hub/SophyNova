@@ -60,6 +60,26 @@ function Navbar() {
       </ul>
 
 
+      
+       
+      <ul className="flex justify-center">
+      
+        <li>
+          
+          <Link to="/Thought" className="hover:text-cyan-400 transition">
+
+            Thought !
+
+          </Link>
+        </li>
+
+      </ul>
+
+      
+
+      
+
+
   {/*------------------------------------------------------------ Buttons---------------------------------------------------------------------- */}
 
 

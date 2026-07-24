@@ -54,6 +54,8 @@ const notificationRoutes = require("./routes/notificationRoutes");
 const authRoutes = require("./routes/authRoutes");
 const profileRoutes = require("./routes/profileRoutes");
 const pdfRoutes = require("./routes/pdfRoutes");
+const dailyThoughtRoutes = require("./routes/dailyThoughtRoutes");
+
 
 app.use("/api/home", homeRoutes);
 app.use("/api/search", searchRoutes);
@@ -68,6 +70,8 @@ app.use("/api/notifications", notificationRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/profile", profileRoutes);
 app.use("/api/pdfs", pdfRoutes);
+console.log("✅ Daily Thought Route Loaded");
+app.use("/api/dailythought", dailyThoughtRoutes);
 
 
 // ------------------------------------------------------- ROOT ----------------------------------------------------------

@@ -3,6 +3,9 @@ import axios from "axios";
 import { Navigate, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 function Hero() {
+
+
+const [dailyThought, setDailyThought] = useState(null);
 const [search, setSearch] = useState("");
 const [results, setResults] = useState([]);
 const [loading, setLoading] = useState(false);
@@ -123,6 +126,34 @@ const [loading, setLoading] = useState(false);
 
     }
 
+
+    useEffect(() => {
+
+    const fetchDailyThought = async () => {
+
+        try {
+
+            const API = import.meta.env.VITE_API_URL;
+
+            const res = await axios.get(
+                `${API}/api/dailythought`
+            );
+            console.log("Daily Thought API:", res.data);
+
+            setDailyThought(res.data.thought);
+
+        } catch (err) {
+
+            console.log(err);
+
+        }
+
+    };
+
+    fetchDailyThought();
+
+}, []);
+
 };
 
   return (
@@ -178,7 +209,12 @@ const [loading, setLoading] = useState(false);
             </p>
 
         </div>
+
+
+
     )}
+
+    
 
     {results.map((item, index) => (
 
@@ -219,6 +255,8 @@ const [loading, setLoading] = useState(false);
           
 
         </div>
+
+        
 
       </div>
 
