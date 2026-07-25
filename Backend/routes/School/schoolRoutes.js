@@ -3,7 +3,7 @@ const express = require("express");
 const router = express.Router();
 
 const multer = require("../../Middleware/Multer");
-const{getClasses}= require("../../controllers/School/schoolUploadController")
+const{getClasses, getSubjects}= require("../../controllers/School/schoolUploadController")
 
 const {
 
@@ -16,5 +16,7 @@ router.post("/upload", multer.single("pdf"), uploadPDF);
 
 router.get("/get", getPDF);
 router.get("/classes", getClasses)
+
+router.get("/subjects/:class_id", getSubjects)
 
 module.exports = router;
