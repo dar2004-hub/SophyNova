@@ -15,6 +15,6 @@ const {
 router.post("/upload", multer.single("pdf"), uploadPDF);
 
 router.get("/get", getPDF);
-router.get("/get", getClasses)
+router.get("/classes", getClasses)
 
 module.exports = router;

@@ -57,8 +57,7 @@ const pdfRoutes = require("./routes/pdfRoutes");
 const dailyThoughtRoutes = require("./routes/dailyThoughtRoutes");
 const schoolRoutes = require("././routes/School/schoolRoutes");
 
-
-app.use("/api/school/classes", schoolRoutes);
+app.use("/api/school", schoolRoutes);
 app.use("/api/home", homeRoutes);
 app.use("/api/search", searchRoutes);
 app.use("/api/exams", examRoutes);
