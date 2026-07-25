@@ -115,8 +115,8 @@ const uploadPDF = async (req, res) => {
         const [existing] = await db.query(
 
             `
-            SELECT pdf_id FROM pdfs
-            WHERE exam_id = ? AND subject_id = ? AND resource_type_id = ? LIMIT 1
+            SELECT pdf_id FROM school_subjects
+            WHERE class_id = ? AND subject_id = ? AND subject_name = ? LIMIT 1
             `,
 
             [
@@ -164,7 +164,7 @@ const { data: publicUrlData } = supabase.storage
     .from("school_subjects")
     .getPublicUrl(fileName);
 
-const pdf_file = publicUrlData.publicUrl;
+const pdf_url = publicUrlData.publicUrl;
              
 
 
@@ -173,7 +173,7 @@ const pdf_file = publicUrlData.publicUrl;
 const [result] = await db.query(
 
             `
-            INSERT INTO pdfs
+            INSERT INTO school_subjects
             (
 
                class_id,
@@ -192,7 +192,7 @@ const [result] = await db.query(
 
                 Number(class_id),
                 Number(subject_id),
-                Number(subject_name),
+                    (subject_name),
                 pdf_title.trim(),
                 pdf_url,
                 uploaded_by
@@ -227,7 +227,7 @@ const [result] = await db.query(
 
 };
 
-{/*------------------------------------------------------------GET PDF--------------------------------------------------------------- */}
+//------------------------------------------------------------GET PDF--------------------------------------------------------------- */}
 
 
 const getPDF = async (req, res) => {
@@ -262,7 +262,7 @@ const getPDF = async (req, res) => {
         const [pdf] = await db.query(
 
             `
-            SELECT * FROM pdfs WHERE
+            SELECT * FROM school_subjects WHERE
              class_id = ? AND subject_id = ? AND subject_name = ? LIMIT 1
             `,
 
