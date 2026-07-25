@@ -1,5 +1,5 @@
 const supabase = require("../../config/supabase");
-const db = require("../config/db");
+const db = require("../../config/db");
 
 // ==========================================================
 // UPLOAD PDF
