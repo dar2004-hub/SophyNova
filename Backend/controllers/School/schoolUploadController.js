@@ -39,7 +39,7 @@ const uploadPDF = async (req, res) => {
             subject_id,
             subject_name,
             pdf_title,
-            pdf_url,
+            
             uploaded_by
 
         } = req.body;
