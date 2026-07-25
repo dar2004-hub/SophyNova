@@ -2,7 +2,7 @@ const express = require("express");
 
 const router = express.Router();
 
-const multer = require("../Middleware/Multer");
+const multer = require("../../Middleware/Multer");
 
 const {
 
