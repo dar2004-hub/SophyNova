@@ -143,7 +143,7 @@ const { data: publicUrlData } = supabase.storage
     .from("school_subjects")
     .getPublicUrl(fileName);
 
-const pdf_url = publicUrlData.publicUrl;
+const pdf_file = publicUrlData.publicUrl;
              
 
 
