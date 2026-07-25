@@ -1,66 +1,292 @@
-const db = require("../../config/db");
+const supabase = require("../config/supabase");
+const db = require("../config/db");
 
-const uploadBook = async (req, res) => {
+// ==========================================================
+// UPLOAD PDF
+// ==========================================================
+
+const uploadPDF = async (req, res) => {
 
     try {
 
-        const [existing] = await db.query(
-    `
-    SELECT book_id
-    FROM school_resources
-    WHERE class_id = ?
-      AND subject_id = ?
-      AND title = ?
-      AND resource_type = 'Book'
-    `,
-    [class_id, subject_id, title]
-);
+        console.log("BODY :", req.body);
+        console.log("FILE :", req.file);
 
-if (existing.length > 0) {
-    return res.status(409).json({
+        const {
+
+            class_id,
+            subject_id,
+            subject_name,
+            pdf_title,
+            pdf_url,
+            uploaded_by
+
+        } = req.body;
+
+    {/*--------------------------------------------------------------- Validation -----------------------------------------------------*/}
+
+
+        if (!req.file) {
+
+            return res.status(400).json({
+
+                success: false,
+                message: "Please select a PDF."
+
+            });
+
+        }
+
+        if (
+
+            !class_id ||
+            !subject_id ||
+            !subject_name ||
+            !pdf_title
+
+        ) {
+
+            return res.status(400).json({
+
+                success: false,
+                message: "All fields are required."
+
+            });
+
+        }
+
+        {/*--------------------------------------------------Check Resource Exists-----------------------------------------------------------------*/}
+
+        const [resource] = await db.query(
+
+            `
+            SELECT *
+            FROM school_subjects
+            WHERE
+            class_id = ? AND subject_id = ? AND subject_name = ? LIMIT 1
+            `,
+
+            [
+
+                Number(class_id),
+                Number(subject_id),
+                      (subject_name)
+
+            ]
+
+        );
+
+        if (resource.length === 0) {
+
+            return res.status(404).json({
+
+                success: false,
+                message: "Resource not found."
+
+            });
+
+        }
+
+       {/*-------------------------------------------------------Duplicate Check---------------------------------------------------------------------- */}
+
+
+
+        const [existing] = await db.query(
+
+            `
+            SELECT pdf_id FROM pdfs
+            WHERE exam_id = ? AND subject_id = ? AND resource_type_id = ? LIMIT 1
+            `,
+
+            [
+
+                Number(class_id),
+                Number(subject_id),
+                       (subject_name)
+
+            ]
+
+        );
+
+        if (existing.length > 0) {
+
+            return res.status(409).json({
+
+                success: false,
+                message: "PDF already uploaded for this resource."
+
+            });
+
+        }
+
+    console.log(req.file);
+
+    {/*--------------------------------------------------------------Insert PDF -----------------------------------------------------------------------*/}
+
+const fileName =   `${Date.now()}-${req.file.originalname}`;
+
+const { data, error } = await supabase.storage
+    .from("school_subjects")
+    .upload(fileName, req.file.buffer, {
+        contentType: "application/pdf",
+        upsert: false,
+    });
+
+if (error) {
+    return res.status(500).json({
         success: false,
-        message: "This book already exists."
+        message: error.message,
     });
 }
 
-        const { class_id, subject_id, title } = req.body;
+const { data: publicUrlData } = supabase.storage
+    .from("school_subjects")
+    .getPublicUrl(fileName);
 
-        if (!req.file) {
-            return res.status(400).json({
-                success: false,
-                message: "Please upload a PDF."
-            });
-        }
+const pdf_url = publicUrlData.publicUrl;
+             
 
-        const pdf_url = req.file.filename;
 
-        await db.query(
+
+
+const [result] = await db.query(
+
             `
-            INSERT INTO school_resources
-            (class_id, subject_id, resource_type, title, pdf_url)
-            VALUES (?, ?, ?, ?, ?)
+            INSERT INTO pdfs
+            (
+
+               class_id,
+               subject_id,
+               subject_name,
+               pdf_title,
+               pdf_url,
+               uploaded_by
+
+            )
+
+            VALUES (?,?,?,?,?,?)
             `,
+
             [
-                class_id,
-                subject_id,
-                "Book",
-                title,
-                pdf_url
+
+                Number(class_id),
+                Number(subject_id),
+                Number(subject_name),
+                pdf_title.trim(),
+                pdf_url,
+                uploaded_by
+
             ]
+
         );
 
-        res.json({
+        return res.status(201).json({
+
             success: true,
-            message: "Book Uploaded Successfully"
+            message: "PDF Uploaded Successfully",
+            pdf_id: result.insertId
+
         });
 
-    } catch (err) {
+    }
+    
+
+    catch (err) {
 
         console.log(err);
 
-        res.status(500).json({
+        return res.status(500).json({
+
             success: false,
             message: err.message
+
+        });
+
+    }
+
+};
+
+{/*------------------------------------------------------------GET PDF--------------------------------------------------------------- */}
+
+
+const getPDF = async (req, res) => {
+
+    try {
+
+        const {
+
+            class_id,
+            subject_id,
+            subject_name
+
+        } = req.query;
+
+        if (
+
+            !class_id ||
+            !subject_id ||
+            !subject_name
+
+        ) {
+
+            return res.status(400).json({
+
+                success: false,
+                message: "Missing Parameters."
+
+            });
+
+        }
+
+        const [pdf] = await db.query(
+
+            `
+            SELECT * FROM pdfs WHERE
+             class_id = ? AND subject_id = ? AND subject_name = ? LIMIT 1
+            `,
+
+            [
+
+                Number(class_id),
+                Number(subject_id),
+                Number(subject_name)
+
+            ]
+
+        );
+
+        if (pdf.length === 0) {
+
+            return res.status(404).json({
+
+                success: false,
+                message: "PDF Not Uploaded Yet."
+
+            });
+
+        }
+
+        return res.status(200).json({
+
+            success: true,
+            pdf:{
+                ... pdf[0],
+                url:pdf[0].pdf_url
+            }
+
+        });
+
+    }
+
+    catch (err) {
+
+        console.log(err);
+
+        return res.status(500).json({
+
+            success: false,
+            message: err.message
+
         });
 
     }
@@ -68,5 +294,8 @@ if (existing.length > 0) {
 };
 
 module.exports = {
-    uploadBook
+
+    uploadPDF,
+    getPDF
+
 };
