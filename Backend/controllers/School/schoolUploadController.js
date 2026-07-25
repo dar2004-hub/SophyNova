@@ -5,6 +5,27 @@ const db = require("../../config/db");
 // UPLOAD PDF
 // ==========================================================
 
+const getClasses = async (req, res) => {
+    try {
+
+        const [classes] = await db.query(
+            "SELECT class_id, class_name FROM school_classes ORDER BY class_id"
+        );
+
+        res.json({
+            success: true,
+            classes
+        });
+
+    } catch (err) {
+
+        res.status(500).json({
+            success: false,
+            message: err.message
+        });
+
+    }
+};
 const uploadPDF = async (req, res) => {
 
     try {
@@ -296,6 +317,7 @@ const getPDF = async (req, res) => {
 module.exports = {
 
     uploadPDF,
-    getPDF
+    getPDF,
+    getClasses
 
 };
