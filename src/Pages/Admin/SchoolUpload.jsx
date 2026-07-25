@@ -127,7 +127,7 @@ function UploadSchoolPDF() {
         formData.append("subject_name", selectedSubject.label);
         formData.append("pdf_title", pdfTitle);
         formData.append("uploaded_by", uploadedBy);
-        formData.append("pdf", pdf);
+        formData.append("pdf_url", pdf);
 
         try {
 
@@ -160,7 +160,7 @@ function UploadSchoolPDF() {
 
             setPdfTitle("");
             setUploadedBy("");
-            setPdf(null);
+            setPdf_url(null);
 
             document.getElementById("pdfFile").value = "";
 
