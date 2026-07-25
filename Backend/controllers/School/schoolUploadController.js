@@ -4,6 +4,25 @@ const uploadBook = async (req, res) => {
 
     try {
 
+        const [existing] = await db.query(
+    `
+    SELECT book_id
+    FROM school_resources
+    WHERE class_id = ?
+      AND subject_id = ?
+      AND title = ?
+      AND resource_type = 'Book'
+    `,
+    [class_id, subject_id, title]
+);
+
+if (existing.length > 0) {
+    return res.status(409).json({
+        success: false,
+        message: "This book already exists."
+    });
+}
+
         const { class_id, subject_id, title } = req.body;
 
         if (!req.file) {
