@@ -93,122 +93,224 @@ export default function SchoolUpload() {
 
     return (
 
-        <div>
+       
 
-            <h1>School Upload</h1>
+<div className="min-h-screen bg-gradient-to-br from-black via-gray-950 to-red-950 flex justify-center items-center px-5 py-10">
 
-            <select
+<div className="w-full max-w-3xl bg-[#121212] border border-red-700 rounded-3xl shadow-[0_0_40px_rgba(255,0,0,.35)] p-10">
 
-                value={classId}
+<div className="text-center">
 
-                onChange={(e)=>setClassId(e.target.value)}
+<h1 className="text-5xl font-extrabold text-white">
 
-            >
+School
 
-                <option>Select Class</option>
+<span className="text-red-600">
 
-                {
+ PDF Upload
 
-                    classes.map(item=>
+</span>
 
-                        <option
+</h1>
 
-                            key={item.class_id}
+<p className="text-gray-400 mt-4">
 
-                            value={item.class_id}
+Upload Study Materials for Students
 
-                        >
+</p>
 
-                            {item.class_name}
+</div>
 
-                        </option>
+<div className="space-y-7 mt-10">
 
-                    )
+<div>
 
-                }
+<label className="block text-white font-semibold mb-2">
 
-            </select>
+📘 Select Class
 
-            <br/><br/>
+</label>
 
-            <select
+<select
 
-                value={subjectId}
+value={classId}
 
-                onChange={(e)=>setSubjectId(e.target.value)}
+onChange={(e)=>setClassId(e.target.value)}
 
-            >
+className="w-full bg-[#1b1b1b] border border-red-600 rounded-xl p-4 text-white outline-none focus:ring-2 focus:ring-red-500"
 
-                <option>Select Subject</option>
+>
 
-                {
+<option value="">Select Class</option>
 
-                    subjects.map(item=>
+{
 
-                        <option
+classes.map(item=>(
 
-                            key={item.subject_id}
+<option
 
-                            value={item.subject_id}
+key={item.class_id}
 
-                        >
+value={item.class_id}
 
-                            {item.subject_name}
+>
 
-                        </option>
+{item.class_name}
 
-                    )
+</option>
 
-                }
+))
 
-            </select>
+}
 
-            <br/><br/>
+</select>
 
-            <input
+</div>
 
-                placeholder="PDF Title"
+<div>
 
-                value={title}
+<label className="block text-white font-semibold mb-2">
 
-                onChange={(e)=>setTitle(e.target.value)}
+📚 Select Subject
 
-            />
+</label>
 
-            <br/><br/>
+<select
 
-            <input
+value={subjectId}
 
-                placeholder="Uploaded By"
+onChange={(e)=>setSubjectId(e.target.value)}
 
-                value={uploadedBy}
+className="w-full bg-[#1b1b1b] border border-red-600 rounded-xl p-4 text-white outline-none focus:ring-2 focus:ring-red-500"
 
-                onChange={(e)=>setUploadedBy(e.target.value)}
+>
 
-            />
+<option value="">Select Subject</option>
 
-            <br/><br/>
+{
 
-            <input
+subjects.map(item=>(
 
-                type="file"
+<option
 
-                accept=".pdf"
+key={item.subject_id}
 
-                onChange={(e)=>setPdf(e.target.files[0])}
+value={item.subject_id}
 
-            />
+>
 
-            <br/><br/>
+{item.subject_name}
 
-            <button onClick={handleUpload}>
+</option>
 
-                Upload PDF
+))
 
-            </button>
+}
 
-        </div>
+</select>
 
-    );
+</div>
 
+<div>
+
+<label className="block text-white font-semibold mb-2">
+
+📝 PDF Title
+
+</label>
+
+<input
+
+placeholder="Enter PDF Title"
+
+value={title}
+
+onChange={(e)=>setTitle(e.target.value)}
+
+className="w-full bg-[#1b1b1b] border border-red-600 rounded-xl p-4 text-white placeholder-gray-500 outline-none focus:ring-2 focus:ring-red-500"
+
+/>
+
+</div>
+
+<div>
+
+<label className="block text-white font-semibold mb-2">
+
+👤 Uploaded By
+
+<span className="text-gray-500 text-sm ml-2">
+
+(Optional)
+
+</span>
+
+</label>
+
+<input
+
+placeholder="Your Name"
+
+value={uploadedBy}
+
+onChange={(e)=>setUploadedBy(e.target.value)}
+
+className="w-full bg-[#1b1b1b] border border-red-600 rounded-xl p-4 text-white placeholder-gray-500 outline-none focus:ring-2 focus:ring-red-500"
+
+/>
+
+</div>
+
+<div>
+
+<label className="block text-white font-semibold mb-2">
+
+📄 Select PDF
+
+</label>
+
+<input
+
+type="file"
+
+accept=".pdf"
+
+onChange={(e)=>setPdf(e.target.files[0])}
+
+className="w-full bg-[#1b1b1b] border border-red-600 rounded-xl p-4 text-white
+file:bg-red-600
+file:text-white
+file:border-0
+file:px-5
+file:py-2
+file:rounded-lg
+file:cursor-pointer"
+
+/>
+
+</div>
+
+<div className="pt-4">
+
+<button
+
+onClick={handleUpload}
+
+className="w-full bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-bold text-xl py-4 rounded-xl shadow-[0_0_25px_rgba(255,0,0,.45)] hover:scale-[1.02] transition duration-300"
+
+>
+
+🚀 Upload PDF
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+);
 }
