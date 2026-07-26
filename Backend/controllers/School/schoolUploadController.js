@@ -23,6 +23,35 @@ const uploadPDF = async (req, res) => {
 
         }
 
+        // ========================
+// Duplicate PDF Check
+// ========================
+
+const [existingPDF] = await db.query(
+    `
+    SELECT pdf_id
+    FROM school_pdfs
+    WHERE class_id = ?
+      AND subject_id = ?
+    LIMIT 1
+    `,
+    [
+        Number(class_id),
+        Number(subject_id)
+    ]
+);
+
+if (existingPDF.length > 0) {
+
+    return res.status(409).json({
+
+        success: false,
+        message: "PDF already exists for this subject."
+
+    });
+
+}
+
         const fileName = `${Date.now()}-${req.file.originalname}`;
 
         const { error } = await supabase.storage
