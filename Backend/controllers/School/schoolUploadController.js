@@ -19,7 +19,7 @@ const getSubjects = async (req, res) => {
             SELECT
                 subject_id,
                 subject_name
-            FROM school_subjects
+            FROM school_pdfs
             WHERE class_id = ?
             ORDER BY subject_name
             `,
@@ -126,7 +126,7 @@ const uploadPDF = async (req, res) => {
 
             `
             SELECT *
-            FROM school_subjects
+            FROM school_pdfs
             WHERE
             class_id = ? AND subject_id = ? AND subject_name = ? LIMIT 1
             `,
@@ -159,7 +159,7 @@ const uploadPDF = async (req, res) => {
         const [existing] = await db.query(
 
             `
-            SELECT pdf_url FROM school_subjects
+            SELECT pdf_url FROM school_pdfs
             WHERE class_id = ? AND subject_id = ? AND pdf_title = ? LIMIT 1
             `,
 
@@ -223,7 +223,7 @@ const pdf_url = publicUrlData.publicUrl;
 const [result] = await db.query(
 
             `
-            INSERT INTO school_subjects
+            INSERT INTO school_pdfs
             (
 
                class_id,
@@ -312,7 +312,7 @@ const getPDF = async (req, res) => {
         const [pdf] = await db.query(
 
             `
-            SELECT * FROM school_subjects WHERE
+            SELECT * FROM school_pdfs WHERE
              class_id = ? AND subject_id = ? AND subject_name = ? LIMIT 1
             `,
 
