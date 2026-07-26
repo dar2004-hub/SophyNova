@@ -160,14 +160,15 @@ const uploadPDF = async (req, res) => {
 
             `
             SELECT pdf_url FROM school_subjects
-            WHERE class_id = ? AND subject_id = ? AND subject_name = ? LIMIT 1
+            WHERE class_id = ? AND subject_id = ? AND pdf_title = ? LIMIT 1
             `,
 
             [
 
                 Number(class_id),
                 Number(subject_id),
-                       (subject_name)
+                pdf_title
+                       
 
             ]
 
