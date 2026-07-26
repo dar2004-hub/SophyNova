@@ -55,7 +55,7 @@ const authRoutes = require("./routes/authRoutes");
 const profileRoutes = require("./routes/profileRoutes");
 const pdfRoutes = require("./routes/pdfRoutes");
 const dailyThoughtRoutes = require("./routes/dailyThoughtRoutes");
-const schoolRoutes = require("././routes/School/schoolRoutes");
+const schoolRoutes = require("././routes/School/schoolRoutes")
 
 app.use("/api/school", schoolRoutes);
 app.use("/api/home", homeRoutes);
