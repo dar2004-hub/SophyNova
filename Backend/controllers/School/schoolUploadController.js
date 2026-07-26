@@ -159,7 +159,7 @@ const uploadPDF = async (req, res) => {
         const [existing] = await db.query(
 
             `
-            SELECT pdf_id FROM school_subjects
+            SELECT pdf_url FROM school_subjects
             WHERE class_id = ? AND subject_id = ? AND subject_name = ? LIMIT 1
             `,
 
