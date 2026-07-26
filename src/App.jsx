@@ -20,7 +20,7 @@ import PopularExams from "./components/PopularExams";
 import ExamDashboard from "./components/ExamDashboard";
 import ExamCards from "./components/ExamCards";
 import Thought from "./components/Thought"
-import SchoolUpload from "./Pages/Admin/SchoolUpload";
+import SchoolUpload from "././Pages/Admin/SchoolUpload";
 
 
 
@@ -35,7 +35,7 @@ function App() {
 
       <Routes>
 
-        <Route path="/SchoolUpload" element={<SchoolUpload />} />
+        <Route path="/SchoolUpload" element={<SchoolUpload/>} />
         <Route path="/Thought" element={<Thought/>}/>
         <Route path="/UploadPDF" element={<UploadPDF/>}/>
         <Route path="/" element={<Home />} />

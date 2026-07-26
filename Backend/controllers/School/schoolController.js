@@ -91,7 +91,7 @@ const getSubjects = async (req, res) => {
 
         const [subjects] = await db.query(
             `SELECT subject_id, subject_name
-             FROM school
+             FROM school_subjects
              WHERE class_id = ?
              ORDER BY subject_name`,
             [class_id]

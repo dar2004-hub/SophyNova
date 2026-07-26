@@ -1,381 +1,208 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
-import Select from "react-select";
 
-console.log("school loder dd")
-function SchoolUpload() {
+export default function SchoolUpload() {
 
     const API = import.meta.env.VITE_API_URL;
 
-    // -----------------------------
-    // STATES
-    // -----------------------------
-
     const [classes, setClasses] = useState([]);
+
     const [subjects, setSubjects] = useState([]);
 
-    const [selectedClass, setSelectedClass] = useState(null);
-    const [selectedSubject, setSelectedSubject] = useState(null);
+    const [classId, setClassId] = useState("");
 
-    const [pdfTitle, setPdfTitle] = useState("");
+    const [subjectId, setSubjectId] = useState("");
+
+    const [title, setTitle] = useState("");
+
     const [uploadedBy, setUploadedBy] = useState("");
 
     const [pdf, setPdf] = useState(null);
 
-    const [loading, setLoading] = useState(false);
-
-    // -----------------------------
-    // LOAD CLASSES
-    // -----------------------------
-
     useEffect(() => {
 
-        axios
+        axios.get(`${API}/api/school/classes`)
 
-            .get(`${API}/api/school/classes`)
+        .then(res => {
 
-            .then((res) => {
+            setClasses(res.data.classes);
 
-                const data = res.data.classes.map(item => ({
-
-                    value: item.class_id,
-                    label: item.class_name
-
-                }));
-
-                setClasses(data);
-
-            })
-
-            .catch((err) => {
-
-                console.log(err);
-
-                alert("Unable to Load Classes");
-
-            });
+        });
 
     }, []);
 
-    // -----------------------------
-    // LOAD SUBJECTS
-    // -----------------------------
-
     useEffect(() => {
 
-        if (!selectedClass) {
-
-            setSubjects([]);
-            setSelectedSubject(null);
-
-            return;
-
-        }
+        if (!classId) return;
 
         axios
 
-            .get(`${API}/api/school/subjects/${selectedClass.value}`)
+        .get(`${API}/api/school/subjects/${classId}`)
 
-            .then((res) => {
+        .then(res => {
 
-                const data = res.data.subjects.map(item => ({
+            setSubjects(res.data.subjects);
 
-                    value: item.subject_id,
-                    label: item.subject_name
+        });
 
-                }));
+    }, [classId]);
 
-                setSubjects(data);
+    const handleUpload = async () => {
 
-            })
+        const formData = new FormData();
 
-            .catch((err) => {
+        formData.append("class_id", classId);
 
-                console.log(err);
+        formData.append("subject_id", subjectId);
 
-                alert("Unable to Load Subjects");
+        formData.append("pdf_title", title);
 
-            });
+        formData.append("uploaded_by", uploadedBy);
 
-    }, [selectedClass]);
+        formData.append("pdf", pdf);
 
-    // -----------------------------
-    // REACT SELECT STYLE
-    // -----------------------------
+        try{
 
-    const customStyle = {
+            const res = await axios.post(
 
-        control: (base) => ({
+                `${API}/api/school/upload`,
 
-            ...base,
+                formData
 
-            background: "#181818",
+            );
 
-            border: "2px solid #dc2626",
+            alert(res.data.message);
 
-            borderRadius: "15px",
+        }
 
-            padding: "6px",
+        catch(err){
 
-            color: "white"
+            console.log(err);
 
-        }),
+            alert("Upload Failed");
 
-        menu: (base) => ({
+        }
 
-            ...base,
-
-            background: "#181818"
-
-        }),
-
-        option: (base, state) => ({
-
-            ...base,
-
-            background: state.isFocused ? "#dc2626" : "#181818",
-
-            color: "white"
-
-        }),
-
-        singleValue: (base) => ({
-
-            ...base,
-
-            color: "white"
-
-        })
-
-        
-
-    }
-    function SchoolUpload() {
-
-    // States
-
-    // useEffect (Classes)
-
-    // useEffect (Subjects)
-
-    // customStyle
-
-    // 👇 Paste Part 2 HERE
+    };
 
     return (
 
-        
+        <div>
 
-<div className="min-h-screen bg-gradient-to-br from-black via-gray-950 to-red-950 flex justify-center items-center px-4 py-8">
+            <h1>School Upload</h1>
 
-<div className="w-full max-w-3xl bg-[#151515] rounded-3xl border border-red-700 shadow-[0_0_40px_rgba(255,0,0,.35)] p-8">
+            <select
 
-<h1 className="text-4xl font-extrabold text-center text-white">
+                value={classId}
 
-School
+                onChange={(e)=>setClassId(e.target.value)}
 
-<span className="text-red-600">
+            >
 
- PDF Upload
+                <option>Select Class</option>
 
-</span>
+                {
 
-</h1>
+                    classes.map(item=>
 
-<p className="text-center text-gray-400 mt-3">
+                        <option
 
-Upload Study Material for School Students
+                            key={item.class_id}
 
-</p>
+                            value={item.class_id}
 
-<div className="space-y-6 mt-10">
+                        >
 
-{/* ---------------- CLASS ---------------- */}
+                            {item.class_name}
 
-<div>
+                        </option>
 
-<label className="text-white font-semibold mb-2 block">
+                    )
 
-Select Class
+                }
 
-</label>
+            </select>
 
-<Select
+            <br/><br/>
 
-options={classes}
+            <select
 
-value={selectedClass}
+                value={subjectId}
 
-onChange={setSelectedClass}
+                onChange={(e)=>setSubjectId(e.target.value)}
 
-placeholder="Select Class"
+            >
 
-styles={customStyle}
+                <option>Select Subject</option>
 
-/>
+                {
 
-</div>
+                    subjects.map(item=>
 
-{/* ---------------- SUBJECT ---------------- */}
+                        <option
 
-<div>
+                            key={item.subject_id}
 
-<label className="text-white font-semibold mb-2 block">
+                            value={item.subject_id}
 
-Select Subject
+                        >
 
-</label>
+                            {item.subject_name}
 
-<Select
+                        </option>
 
-options={subjects}
+                    )
 
-value={selectedSubject}
+                }
 
-onChange={setSelectedSubject}
+            </select>
 
-placeholder="Select Subject"
+            <br/><br/>
 
-styles={customStyle}
+            <input
 
-/>
+                placeholder="PDF Title"
 
-</div>
+                value={title}
 
-{/* ---------------- PDF TITLE ---------------- */}
+                onChange={(e)=>setTitle(e.target.value)}
 
-<div>
+            />
 
-<label className="text-white font-semibold mb-2 block">
+            <br/><br/>
 
-PDF Title
+            <input
 
-</label>
+                placeholder="Uploaded By"
 
-<input
+                value={uploadedBy}
 
-type="text"
+                onChange={(e)=>setUploadedBy(e.target.value)}
 
-value={pdfTitle}
+            />
 
-onChange={(e)=>setPdfTitle(e.target.value)}
+            <br/><br/>
 
-placeholder="Enter PDF Title"
+            <input
 
-className="w-full p-4 rounded-xl bg-[#181818] border border-red-600 text-white outline-none focus:border-red-400"
+                type="file"
 
-/>
+                accept=".pdf"
 
-</div>
+                onChange={(e)=>setPdf(e.target.files[0])}
 
-{/* ---------------- UPLOADED BY ---------------- */}
+            />
 
-<div>
+            <br/><br/>
 
-<label className="text-white font-semibold mb-2 block">
+            <button onClick={handleUpload}>
 
-Uploaded By
+                Upload PDF
 
-<span className="text-gray-400 ml-2">
+            </button>
 
-(Optional)
+        </div>
 
-</span>
-
-</label>
-
-<input
-
-type="text"
-
-value={uploadedBy}
-
-onChange={(e)=>setUploadedBy(e.target.value)}
-
-placeholder="Teacher / Author Name"
-
-className="w-full p-4 rounded-xl bg-[#181818] border border-red-600 text-white outline-none focus:border-red-400"
-
-/>
-
-</div>
-
-{/* ---------------- PDF FILE ---------------- */}
-
-<div>
-
-<label className="text-white font-semibold mb-2 block">
-
-Choose PDF
-
-</label>
-
-<input
-
-id="schoolPDF"
-
-type="file"
-
-accept=".pdf"
-
-onChange={(e)=>setPdf(e.target.files[0])}
-
-className="w-full p-4 rounded-xl bg-[#181818] border border-red-600 text-white
-file:bg-red-600
-file:text-white
-file:px-4
-file:py-2
-file:border-0
-file:rounded-lg"
-
-/>
-
-</div>
-
-{/* ---------------- BUTTON ---------------- */}
-
-<button
-
-onClick={handleUpload}
-
-disabled={loading}
-
-className="w-full bg-red-600 hover:bg-red-700 disabled:bg-gray-700 py-4 rounded-xl text-xl font-bold transition"
-
->
-
-{
-
-loading ?
-
-"Uploading PDF..."
-
-:
-
-"UPLOAD PDF"
+    );
 
 }
-
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-);
-
-
-
-
-
-};
-
-}
-
-export default SchoolUpload;
-
-
-
-    
