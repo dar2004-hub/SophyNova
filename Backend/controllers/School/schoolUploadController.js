@@ -26,7 +26,7 @@ const uploadPDF = async (req, res) => {
         const fileName = `${Date.now()}-${req.file.originalname}`;
 
         const { error } = await supabase.storage
-            .from("school-pdfs")
+            .from("school_pdfs")
             .upload(fileName, req.file.buffer, {
                 contentType: "application/pdf"
             });
@@ -41,7 +41,7 @@ const uploadPDF = async (req, res) => {
         }
 
         const { data } = supabase.storage
-            .from("school-pdfs")
+            .from("school_pdfs")
             .getPublicUrl(fileName);
 
         await db.query(
