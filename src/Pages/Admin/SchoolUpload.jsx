@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import Select from "react-select";
 
+console.log("school loder dd")
 function SchoolUpload() {
 
     const API = import.meta.env.VITE_API_URL;

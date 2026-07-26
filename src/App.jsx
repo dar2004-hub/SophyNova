@@ -35,7 +35,7 @@ function App() {
 
       <Routes>
 
-        <Route path="/school-upload" element={<SchoolUpload />} />
+        <Route path="/SchoolUpload" element={<SchoolUpload />} />
         <Route path="/Thought" element={<Thought/>}/>
         <Route path="/UploadPDF" element={<UploadPDF/>}/>
         <Route path="/" element={<Home />} />
