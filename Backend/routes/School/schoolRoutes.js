@@ -18,7 +18,7 @@ const {
 } = require("../../controllers/School/schoolPDFController");
 
 router.get("/classes", getClasses);
-router.get("/streams/:class_id", getStreams);
+router.get("/subjects/:class_id", getSubjects);
 router.get("/subjects", getSubjects);
 router.get("/pdfs", getPDFs);
 

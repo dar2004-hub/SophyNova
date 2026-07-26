@@ -84,56 +84,33 @@ const getStreams = async (req, res) => {
 // ======================================================
 // Get Subjects
 // ======================================================
+const getSubjects = async (req, res) => {
+    try {
 
-const getSubjects = async(req,res)=>{
+        const { class_id } = req.params;
 
-    try{
+        const [subjects] = await db.query(
+            `SELECT subject_id, subject_name
+             FROM school
+             WHERE class_id = ?
+             ORDER BY subject_name`,
+            [class_id]
+        );
 
-        const {class_id,stream}=req.query;
-
-        let sql=`
-            SELECT
-                subject_id,
-                subject_name
-            FROM school_subjects
-            WHERE class_id=?
-        `;
-
-        let values=[class_id];
-
-        if(stream){
-
-            sql+=` AND stream=?`;
-            values.push(stream);
-
-        }
-
-        sql+=` ORDER BY subject_name`;
-
-        const [subjects]=await db.query(sql,values);
-
-        return res.json({
-
-            success:true,
+        res.json({
+            success: true,
             subjects
+        });
 
+    } catch (err) {
+
+        res.status(500).json({
+            success: false,
+            message: err.message
         });
 
     }
-
-    catch(err){
-
-        return res.status(500).json({
-
-            success:false,
-            message:err.message
-
-        });
-
-    }
-
 };
-
 module.exports={
 
     getClasses,
