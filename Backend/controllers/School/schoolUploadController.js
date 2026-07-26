@@ -249,7 +249,7 @@ const [result] = await db.query(
 
             success: true,
             message: "PDF Uploaded Successfully",
-            pdf_id: result.insertId
+            pdf_url: result.insertId
 
         });
 
