@@ -198,7 +198,12 @@ const { data, error } = await supabase.storage
         upsert: false,
     });
 
+
+    console.log("SUPABASE DATA:", data);
+console.log("SUPABASE ERROR:", error);
+
 if (error) {
+    console.log("Supabase Upload Error:", error);
     return res.status(500).json({
         success: false,
         message: error.message,
