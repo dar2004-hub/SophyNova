@@ -18,6 +18,8 @@ export default function SchoolUpload() {
 
     const [uploadedBy, setUploadedBy] = useState("");
 
+    const [loading, setLoading] = useState(false);
+
     const [pdf, setPdf] = useState(null);
 
     useEffect(() => {
