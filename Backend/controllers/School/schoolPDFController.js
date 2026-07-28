@@ -1,65 +1,50 @@
 const db = require("../../config/db");
 
-// ======================================================
-// Get PDFs by Subject
-// ======================================================
+// Search PDFs
 
-const getPDFs = async (req, res) => {
+const searchSchoolPDFs = async (req, res) => {
 
     try {
 
-        const { subject_id } = req.query;
+        const { class_id, subject_id } = req.query;
 
-        if (!subject_id) {
-
-            return res.status(400).json({
-
-                success: false,
-                message: "Subject ID is required."
-
-            });
-
-        }
-
-        const [pdfs] = await db.query(
+        const [rows] = await db.query(
 
             `
-            SELECT
 
-                pdf_id,
-                pdf_title,
-                pdf_url,
-                uploaded_by
+            SELECT *
 
-            FROM school_pdfs
+            FROM pdfs
 
-            WHERE subject_id = ?
+            WHERE class_id=?
 
-            ORDER BY pdf_title
+            AND subject_id=?
+
             `,
 
-            [subject_id]
+            [class_id, subject_id]
 
         );
 
-        return res.status(200).json({
+        return res.json({
 
             success: true,
 
-            pdfs
+            pdfs: rows
 
         });
 
     }
 
-    catch (err) {
+    catch(err){
 
         console.log(err);
 
-        return res.status(500).json({
+        res.status(500).json({
 
-            success: false,
-            message: err.message
+            success:false,
+
+            message:err.message
 
         });
 
@@ -67,8 +52,87 @@ const getPDFs = async (req, res) => {
 
 };
 
-module.exports = {
 
-    getPDFs
+// Get One PDF
+
+const getSchoolPDF = async (req,res)=>{
+
+    try{
+
+        const { pdf_id } = req.query;
+
+        const [rows] = await db.query(
+
+            `
+
+            SELECT
+
+            p.*,
+
+            c.class_name,
+
+            s.subject_name
+
+            FROM pdfs p
+
+            JOIN classes c
+
+            ON p.class_id=c.class_id
+
+            JOIN school_subjects s
+
+            ON p.subject_id=s.subject_id
+
+            WHERE p.pdf_id=?
+
+            `,
+
+            [pdf_id]
+
+        );
+
+        if(rows.length===0){
+
+            return res.json({
+
+                success:false,
+
+                message:"PDF Not Found"
+
+            });
+
+        }
+
+        res.json({
+
+            success:true,
+
+            pdf:rows[0]
+
+        });
+
+    }
+
+    catch(err){
+
+        console.log(err);
+
+        res.status(500).json({
+
+            success:false,
+
+            message:err.message
+
+        });
+
+    }
+
+};
+
+module.exports={
+
+    searchSchoolPDFs,
+
+    getSchoolPDF
 
 };

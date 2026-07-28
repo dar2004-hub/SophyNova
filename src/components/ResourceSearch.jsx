@@ -4,6 +4,7 @@ import Select from "react-select";
 import axios from "axios";
 import { Search, SearchCheckIcon } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 
 function Resources() {
@@ -328,12 +329,15 @@ const handleSearch = async () => {
     )}
 
             </div>
+            <Link to = "/school">
 
                         <button
   className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg"
 >
     🎓 University/School
+    
 </button>
+</Link>
 
         
         </div>

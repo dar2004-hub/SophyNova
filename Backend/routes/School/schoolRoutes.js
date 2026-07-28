@@ -14,6 +14,7 @@ const {
 
 router.get("/classes", getClasses);
 
+
 router.get("/subjects/:class_id", getSubjects);
 
 router.post(
