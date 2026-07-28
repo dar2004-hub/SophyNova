@@ -80,11 +80,6 @@ export default function SchoolUpload() {
 
         catch(err){
 
-            console.log("FULL ERROR:", err);
-
-    console.log("Response:", err.response);
-
-    console.log("Data:", err.response?.data)
 
             console.log(err);
 
