@@ -296,13 +296,12 @@ file:cursor-pointer"
 <button
 
 onClick={handleUpload}
+disabled={loading}
 
-className="w-full bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-bold text-xl py-4 rounded-xl shadow-[0_0_25px_rgba(255,0,0,.45)] hover:scale-[1.02] transition duration-300"
-
->
-
-🚀 Upload PDF
-
+className="w-full bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-bold text-xl py-4 rounded-xl shadow-[0_0_25px_rgba(255,0,0,.45)] hover:scale-[1.02] transition duration-300">
+{
+ loading ? "Uploading..." : "🚀 Upload PDF"
+}
 </button>
 
 </div>
