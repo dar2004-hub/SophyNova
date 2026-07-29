@@ -1,15 +1,15 @@
-import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 
-function SchoolResourceDetails() {
+function SchoolPDFDetails() {
 
     const location = useLocation();
     const navigate = useNavigate();
 
     const state = location.state;
 
-    const [pdf, setPDF] = useState(null);
+    const [pdf, setPdf] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
 
@@ -17,7 +17,7 @@ function SchoolResourceDetails() {
 
         if (!state) {
 
-            setError("No Resource Selected.");
+            setError("No PDF Selected");
             setLoading(false);
             return;
 
@@ -31,27 +31,27 @@ function SchoolResourceDetails() {
 
                 const res = await axios.get(
 
-                    `${API}/api/school/get`,
+                    `${API}/api/school-pdfs/get`,
 
                     {
+
                         params: {
-                            class_id: state.class_id,
-                            subject_id: state.subject_id,
-                            subject_name : state.subject_name
+
+                            pdf_id: state.pdf_id
+
                         }
+
                     }
 
                 );
 
-                if (res.data.success && res.data.pdf) {
+                if (res.data.success) {
 
-                    console.log("PDF Received :", res.data.pdf);
-
-                    setPDF(res.data.pdf);
+                    setPdf(res.data.pdf);
 
                 } else {
 
-                    setError("PDF Not Found.");
+                    setError("PDF Not Found");
 
                 }
 
@@ -65,7 +65,7 @@ function SchoolResourceDetails() {
 
                     err.response?.data?.message ||
 
-                    "Unable to Load PDF."
+                    "Unable to Load PDF"
 
                 );
 
@@ -83,23 +83,23 @@ function SchoolResourceDetails() {
 
     }, [state]);
 
-    // ----------------------------
-    // Loading Screen
-    // ----------------------------
-
     if (loading) {
 
         return (
 
-            <div className="min-h-screen bg-black flex flex-col justify-center items-center">
+            <div className="min-h-screen bg-black flex justify-center items-center">
 
-                <div className="w-16 h-16 border-4 border-red-600 border-t-transparent rounded-full animate-spin"></div>
+                <div className="text-center">
 
-                <h2 className="mt-6 text-red-500 text-3xl font-bold">
+                    <div className="w-16 h-16 border-4 border-red-600 border-t-transparent rounded-full animate-spin mx-auto"></div>
 
-                    Loading PDF...
+                    <h2 className="text-white text-3xl mt-6">
 
-                </h2>
+                        Loading PDF...
+
+                    </h2>
+
+                </div>
 
             </div>
 
@@ -107,16 +107,13 @@ function SchoolResourceDetails() {
 
     }
 
-    {/*------------------------------------------------------ Error Screen ----------------------------------------------------------------*/}
-
-
     if (error) {
 
         return (
 
             <div className="min-h-screen bg-black flex flex-col justify-center items-center">
 
-                <h1 className="text-4xl text-red-600 font-bold">
+                <h1 className="text-red-500 text-4xl font-bold">
 
                     {error}
 
@@ -126,11 +123,11 @@ function SchoolResourceDetails() {
 
                     onClick={() => navigate(-1)}
 
-                    className="mt-8 bg-red-600 hover:bg-red-700 px-8 py-4 rounded-xl text-xl font-bold"
+                    className="mt-8 bg-red-600 px-8 py-4 rounded-xl"
 
                 >
 
-                    ← Go Back
+                    Go Back
 
                 </button>
 
@@ -140,141 +137,138 @@ function SchoolResourceDetails() {
 
     }
 
-   {/*----------------------------------------------------------------------Safety Check-------------------------------------------------------*/}
-
-   
-    if (!pdf) {
-
-        return (
-
-            <div className="min-h-screen bg-black flex justify-center items-center">
-
-                <h1 className="text-red-500 text-4xl">
-
-                    PDF Not Available
-
-                </h1>
-
-            </div>
-
-        );
-
-    }
-
-//  -----------------------------------------------------------------PDF URL --------------------------------------------------------------------
-
-
     const API = import.meta.env.VITE_API_URL;
-    const pdfURL = pdf.pdf_file;
+
+    const pdfURL = `${API}/uploads/pdfs/${pdf.pdf_url}`;
 
     return (
 
-        <div className="min-h-screen bg-gradient-to-br from-black via-[#111111] to-red-950 py-10 px-6">
+<div className="min-h-screen bg-gradient-to-br from-black via-gray-950 to-red-950">
 
-            <div className="max-w-7xl mx-auto">
+<div className="max-w-7xl mx-auto py-12 px-6">
 
-                <div className="bg-[#181818] border border-red-600 rounded-3xl shadow-[0_0_30px_rgba(255,0,0,.4)] overflow-hidden">
+<div className="bg-[#111] rounded-3xl border border-red-700 shadow-[0_0_35px_rgba(255,0,0,.3)] p-8">
 
-                    {/* Header */}
+<h1 className="text-5xl text-white font-extrabold">
 
-                    <div className="p-8 border-b border-red-700">
+{pdf.title}
 
-                        <h1 className="text-5xl font-bold text-red-500">
+</h1>
 
-                            {pdf.pdf_title}
+<p className="text-gray-400 mt-4">
 
-                        </h1>
+{pdf.description}
 
-                        <p className="mt-4 text-gray-400">
+</p>
 
-                            Uploaded :
+<div className="grid md:grid-cols-3 gap-6 mt-8">
 
-                            <span className="text-white ml-2">
+<div>
 
-                                {new Date(pdf.uploaded_at).toLocaleString()}
+<h2 className="text-red-500 font-bold">
 
-                            </span>
+Class
 
-                        </p>
+</h2>
 
-                        <p  className="mt-4 text-gray-400">
-                            Uploaded By:
-                            <span className="text-white ml-2">
-                                {""}{pdf.uploaded_by}
-                            </span>
-                        </p>
+<p className="text-white">
 
+{pdf.class_name}
 
+</p>
 
-                        
+</div>
 
-                    </div>
+<div>
 
+<h2 className="text-red-500 font-bold">
 
+Subject
 
-{/*---------------------------------------------------------------- Buttons------------------------------------------------------------ */}
+</h2>
 
+<p className="text-white">
 
+{pdf.subject_name}
 
+</p>
 
-                    <div className="flex flex-wrap gap-5 p-8">
+</div>
 
-                       <button
-                            onClick={() =>
-                                document
-                                    .getElementById("pdf-viewer")
-                                    ?.scrollIntoView({ behavior: "smooth" })
-                            }
-                            className="bg-red-600 hover:bg-red-700 px-8 py-4 rounded-xl text-xl font-bold transition"
-                        >
-                            👁 Preview PDF
-                        </button>
-                            <a
-                                href={pdfURL}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                download
-                                className="border-2 border-red-600 hover:bg-red-600 px-8 py-4 rounded-xl text-xl font-bold transition"
-                            >
-                                ⬇ Download PDF
-                            </a>
+<div>
 
-                        <button
+<h2 className="text-red-500 font-bold">
 
-                            onClick={() => navigate(-1)}
+Uploaded By
 
-                            className="border border-gray-600 hover:bg-gray-800 px-3 py-2 rounded-xl text-sm font-bold transition"
+</h2>
 
-                        >
+<p className="text-white">
 
-                            ← Back
+{pdf.uploaded_by || "Anonymous"}
 
-                        </button>
+</p>
 
-                    </div>
+</div>
 
-                    {/* PDF Viewer */}
+</div>
 
-                    <div className="border-t border-red-700">
+<div className="flex gap-6 mt-10">
 
-                        <iframe
-                          id="pdf-viewer"
-                          src={pdfURL}
-                          title="PDF Preview"
-                          width="100%"
-                          height="900px"
-                          className="bg-white rounded-b-3xl"></iframe>
-                        
-                    </div>
+<a
 
-                </div>
+href={pdfURL}
 
-            </div>
+target="_blank"
 
-        </div>
+rel="noreferrer"
+
+className="bg-green-600 hover:bg-green-700 px-8 py-4 rounded-xl text-white font-bold"
+
+>
+
+Preview PDF
+
+</a>
+
+<a
+
+href={pdfURL}
+
+download
+
+className="bg-red-600 hover:bg-red-700 px-8 py-4 rounded-xl text-white font-bold"
+
+>
+
+Download PDF
+
+</a>
+
+</div>
+
+<div className="mt-12">
+
+<iframe
+
+src={pdfURL}
+
+title="PDF Viewer"
+
+className="w-full h-[900px] rounded-xl border border-red-700"
+
+></iframe>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
 
     );
 
 }
 
-export default SchoolResourceDetails;
+export default SchoolPDFDetails;

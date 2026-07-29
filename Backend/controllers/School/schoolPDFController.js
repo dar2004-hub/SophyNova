@@ -75,7 +75,7 @@ const getSchoolPDF = async (req,res)=>{
 
             FROM school_pdfs p
 
-            JOIN classes c
+            JOIN school_classes c
 
             ON p.class_id=c.class_id
 
@@ -83,7 +83,7 @@ const getSchoolPDF = async (req,res)=>{
 
             ON p.subject_id=s.subject_id
 
-            WHERE p.pdf_id=?
+            WHERE p.pdf_id = ?
 
             `,
 
@@ -115,7 +115,7 @@ const getSchoolPDF = async (req,res)=>{
 
     catch(err){
 
-        console.log(err);
+        console.log("full error ",err);
 
         res.status(500).json({
 
