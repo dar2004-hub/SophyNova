@@ -22,6 +22,8 @@ import ExamCards from "./components/ExamCards";
 import Thought from "./components/Thought"
 import SchoolUpload from "././Pages/Admin/SchoolUpload";
 import School from "./components/school";
+import SchoolResourceDetails from "././ResourceDetail/SchoolResourceDetail"
+
 
 
 
@@ -35,8 +37,9 @@ function App() {
       <Navbar />
 
       <Routes>
-
-        <Route path="/School" element={<School/>} />
+        
+        <Route path="/school/pdf-details" element={<SchoolResourceDetails/>} />
+        <Route path="/school" element={<School/>} />
         <Route path="/SchoolUpload" element={<SchoolUpload/>} />
         <Route path="/Thought" element={<Thought/>}/>
         <Route path="/UploadPDF" element={<UploadPDF/>}/>

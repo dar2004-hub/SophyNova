@@ -15,6 +15,10 @@ function SchoolPDFDetails() {
 
     useEffect(() => {
 
+    console.log("PDF Details Page Loaded");
+
+    console.log("State:", state);
+
         if (!state) {
 
             setError("No PDF Selected");
@@ -113,7 +117,7 @@ function SchoolPDFDetails() {
 
             <div className="min-h-screen bg-black flex flex-col justify-center items-center">
 
-                <h1 className="text-red-500 text-4xl font-bold">
+                <h1 className="text-red-500 text-xl font-bold">
 
                     {error}
 
@@ -136,138 +140,112 @@ function SchoolPDFDetails() {
         );
 
     }
-
-    const API = import.meta.env.VITE_API_URL;
-
-    const pdfURL = `${API}/uploads/pdfs/${pdf.pdf_url}`;
+const pdfURL = pdf?.pdf_url;
 
     return (
 
 <div className="min-h-screen bg-gradient-to-br from-black via-gray-950 to-red-950">
 
-<div className="max-w-7xl mx-auto py-12 px-6">
+    <div className="max-w-7xl mx-auto py-12 px-6">
 
-<div className="bg-[#111] rounded-3xl border border-red-700 shadow-[0_0_35px_rgba(255,0,0,.3)] p-8">
+        <div className="bg-[#111] rounded-3xl border border-red-700 shadow-[0_0_35px_rgba(255,0,0,.3)] p-8">
 
-<h1 className="text-5xl text-white font-extrabold">
+            <h1 className="text-xl text-white font-extrabold">
 
-{pdf.title}
+                {pdf.pdf_title}
 
-</h1>
+            </h1>
 
-<p className="text-gray-400 mt-4">
 
-{pdf.description}
+            <div className="grid md:grid-cols-3 gap-6 mt-8">
 
-</p>
+                <div>
 
-<div className="grid md:grid-cols-3 gap-6 mt-8">
+                    <h2 className="text-red-500 font-bold">
 
-<div>
+                     Class
 
-<h2 className="text-red-500 font-bold">
+                    </h2>
 
-Class
+                    <p className="text-white">
 
-</h2>
+                      {pdf.class_name}
 
-<p className="text-white">
+                    </p>
 
-{pdf.class_name}
+                </div>
 
-</p>
+                <div>
 
-</div>
+                    <h2 className="text-red-500 font-bold">
 
-<div>
+                     Subject
 
-<h2 className="text-red-500 font-bold">
+                    </h2>
 
-Subject
+                     <p className="text-white">
 
-</h2>
+                        {pdf.subject_name}
 
-<p className="text-white">
+                    </p>
 
-{pdf.subject_name}
+                </div>
 
-</p>
+                <div>
 
-</div>
+                    <h2 className="text-red-500 font-bold">
 
-<div>
+                     Uploaded By
 
-<h2 className="text-red-500 font-bold">
+                    </h2>
 
-Uploaded By
+                    <p className="text-white">
 
-</h2>
+                      {pdf.uploaded_by || "Anonymous"}
 
-<p className="text-white">
+                    </p>
 
-{pdf.uploaded_by || "Anonymous"}
+                </div>
 
-</p>
+            </div>
 
-</div>
+            <div className="flex gap-6 mt-10">
 
-</div>
+                <a
 
-<div className="flex gap-6 mt-10">
+                href={pdfURL} target="_blank"
+                
+                rel="noreferrer" className="bg-green-600 hover:bg-green-700 px-3 py-2 rounded-xl text-white font-bold text-xs">
 
-<a
+                Preview PDF
 
-href={pdfURL}
+                </a>
 
-target="_blank"
+                <a
 
-rel="noreferrer"
+                href={pdfURL} download
+                className="bg-red-600 hover:bg-red-700 px-2 py-2 rounded-xl text-white font-bold text-xs" >
+                
+                Download PDF
+                
+                </a>
 
-className="bg-green-600 hover:bg-green-700 px-8 py-4 rounded-xl text-white font-bold"
+            </div>
 
->
+            <div className="mt-12">
 
-Preview PDF
+                <iframe src={pdfURL} title="PDF Viewer"
+                className="w-full h-[900px] rounded-xl border border-red-700"></iframe>
 
-</a>
+            </div>
 
-<a
+        </div>
 
-href={pdfURL}
-
-download
-
-className="bg-red-600 hover:bg-red-700 px-8 py-4 rounded-xl text-white font-bold"
-
->
-
-Download PDF
-
-</a>
+    </div>
 
 </div>
 
-<div className="mt-12">
-
-<iframe
-
-src={pdfURL}
-
-title="PDF Viewer"
-
-className="w-full h-[900px] rounded-xl border border-red-700"
-
-></iframe>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-    );
+);
 
 }
 

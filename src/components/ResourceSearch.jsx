@@ -235,14 +235,21 @@ const handleSearch = async () => {
 
             </div>
 
-            <div className="flex justify-center mt-14">
+            <div className="flex justify-center mt-14 gap-8">
 
-                <button onClick={handleSearch} className="flex items-center gap-3 bg-red-600 hover:bg-red-700 px-4 py-3
+                <button onClick={handleSearch} className="flex items-center gap-3 bg-red-600 hover:bg-green-700 px-4 py-3 
                 rounded-full text-sm font-extrabold shadow-[0_0_30px_rgba(255,0,0,.6)] transition duration-300 hover:scale-105">
 
-                <Search size={3}/>SEARCH NOW
+                <Search size={3}/>SEARCH 
 
                </button>
+
+               <Link to = "/school">
+               <button className="bg-green-600 hover:bg-red-700  text-white px-2 py-2 rounded-full text-xl font-extrabold shadow-[0_0_30px_rgba(255,0,0,.6)] transition duration-300 hover:scale-105 ">
+                🎓  School
+                </button>
+                </Link>
+
 
             </div>
 
@@ -309,6 +316,8 @@ const handleSearch = async () => {
                         {item.description}
                          </p>
 
+                         
+
                 </div>
 
                 
@@ -329,16 +338,7 @@ const handleSearch = async () => {
     )}
 
             </div>
-            <Link to = "/school">
-
-                        <button
-  className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg"
->
-    🎓 University/School
-    
-</button>
-</Link>
-
+            
         
         </div>
 

@@ -110,7 +110,7 @@ function SchoolPDF() {
 
             const res = await axios.get(
 
-                `${API}/api/school/get`,
+                `${API}/api/school/search`,
 
                 {
 
@@ -315,6 +315,8 @@ key={item.pdf_id}
 
 onClick={()=>{
 
+    console.log("Clicked PDF:", item);
+
 navigate(
 
 "/school/pdf-details",
@@ -335,15 +337,10 @@ className="bg-[#181818] p-6 rounded-2xl border border-red-600 hover:scale-105 cu
 
 <h2 className="text-red-500 text-2xl font-bold">
 
-{item.title}
+{item.pdf_title}
 
 </h2>
 
-<p className="text-gray-400 mt-3">
-
-{item.description}
-
-</p>
 
 <p className="text-green-400 mt-4">
 
