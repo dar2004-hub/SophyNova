@@ -60,33 +60,36 @@ const getSchoolPDF = async (req,res)=>{
 
     try{
 
-        const { class_id, subject_id } = req.query;
+        const { pdf_id } = req.query;
 
         const [rows] = await db.query(
 
             `
-                SELECT
 
-                pdf_id,
-                pdf_title,
-                pdf_url,
-                uploaded_by
+            SELECT
 
-            FROM school_pdfs
+            p.*,
 
-            WHERE class_id = ?
-            AND subject_id = ?
 
-            ORDER BY pdf_title
+            s.subject_name
+
+            FROM school_pdfs p
+
+            JOIN classes c
+
+            ON p.class_id=c.class_id
+
+            JOIN school_subjects s
+
+            ON p.subject_id=s.subject_id
+
+            WHERE p.pdf_id=?
+
             `,
-
-            [class_id, subject_id]
-
-        );
 
             [pdf_id]
 
-    
+        );
 
         if(rows.length===0){
 
