@@ -31,7 +31,7 @@ function SchoolPDFDetails() {
 
                 const res = await axios.get(
 
-                    `${API}/api/school-pdfs/get`,
+                    `${API}/api/school/get`,
 
                     {
 
