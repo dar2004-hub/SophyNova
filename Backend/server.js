@@ -56,10 +56,10 @@ const profileRoutes = require("./routes/profileRoutes");
 const pdfRoutes = require("./routes/pdfRoutes");
 const dailyThoughtRoutes = require("./routes/dailyThoughtRoutes");
 const schoolRoutes = require("././routes/School/schoolRoutes");
-const schoolPDFRoutes = require("././routes/School/schoolPDFRoutes");
+const schoolPDFRoutes= require("././routes/School/schoolPDFRoutes")
 
 
-app.use("/api/school-pdfs", schoolPDFRoutes);
+app.use("/api/school", schoolPDFRoutes);
 app.use("/api/school", schoolRoutes);
 app.use("/api/home", homeRoutes);
 app.use("/api/search", searchRoutes);

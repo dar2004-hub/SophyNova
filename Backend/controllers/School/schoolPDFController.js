@@ -1,4 +1,5 @@
 const db = require("../../config/db");
+const supabase = require("../../config/supabase");
 
 // Search PDFs
 
@@ -14,7 +15,7 @@ const searchSchoolPDFs = async (req, res) => {
 
             SELECT *
 
-            FROM pdfs
+            FROM school_pdfs
 
             WHERE class_id=?
 
@@ -64,32 +65,28 @@ const getSchoolPDF = async (req,res)=>{
         const [rows] = await db.query(
 
             `
+                SELECT
 
-            SELECT
+                pdf_id,
+                pdf_title,
+                pdf_url,
+                uploaded_by
 
-            p.*,
+            FROM school_pdfs
 
-            c.class_name,
+            WHERE class_id = ?
+            AND subject_id = ?
 
-            s.subject_name
-
-            FROM pdfs p
-
-            JOIN classes c
-
-            ON p.class_id=c.class_id
-
-            JOIN school_subjects s
-
-            ON p.subject_id=s.subject_id
-
-            WHERE p.pdf_id=?
-
+            ORDER BY pdf_title
             `,
+
+            [class_id, subject_id]
+
+        );
 
             [pdf_id]
 
-        );
+    
 
         if(rows.length===0){
 

@@ -29,7 +29,7 @@ function SchoolPDF() {
 
     useEffect(() => {
 
-        axios.get(`${API}/api/classes`)
+        axios.get(`${API}/api/school/classes`)
 
         .then((res)=>{
 
@@ -65,7 +65,7 @@ function SchoolPDF() {
 
         axios
 
-        .get(`${API}/api/school-subjects/${classItem.value}`)
+        .get(`${API}/api/school/subjects/${classItem.value}`)
 
         .then((res)=>{
 
@@ -110,7 +110,7 @@ function SchoolPDF() {
 
             const res = await axios.get(
 
-                `${API}/api/school-pdfs/search`,
+                `${API}/api/school/get`,
 
                 {
 
