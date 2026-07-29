@@ -60,7 +60,7 @@ const getSchoolPDF = async (req,res)=>{
 
     try{
 
-        const { pdf_id } = req.query;
+        const { class_id, subject_id } = req.query;
 
         const [rows] = await db.query(
 
