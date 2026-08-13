@@ -59,7 +59,6 @@ const schoolRoutes = require("././routes/School/schoolRoutes");
 const schoolPDFRoutes= require("././routes/School/schoolPDFRoutes")
 const resourceController= require("./controllers/resourceController")
 
-app.use("/api/resourceController", ResourceController);
 app.use("/api/school", schoolPDFRoutes);
 app.use("/api/school", schoolRoutes);
 app.use("/api/home", homeRoutes);
